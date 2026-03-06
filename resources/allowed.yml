@@ -1,0 +1,8 @@
+# Allowed commands in combat
+allowed-commands:
+  - /is tc
+  - /g tc
+  - /tell
+  - /msg
+  - /r
+  - /rtime

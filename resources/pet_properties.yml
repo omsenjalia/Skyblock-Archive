@@ -1,0 +1,433 @@
+---
+# Walking Pets
+Donkey:
+  Can-Be-Ridden: false
+  Speed: 1.4
+  Size: 1
+  Type: Rare
+  Price: 20000000
+  Min-Size: 0.5
+  Max-Size: 2
+Cow:
+  Can-Be-Ridden: false
+  Speed: 1.4
+  Size: 1
+  Type: Prestige
+  Min-Size: 0.5
+  Max-Size: 2
+Zoglin:
+  Can-Be-Ridden: false
+  Speed: 1.4
+  Size: 1
+  Type: Prestige
+  Min-Size: 0.5
+  Max-Size: 2
+Endermite:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Size: 1
+  Type: Common
+  Price: 10000000
+  Min-Size: 0.5
+  Max-Size: 2
+Frog:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Size: 1
+  Type: IslandChamp
+  Min-Size: 0.5
+  Max-Size: 2
+Chicken:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Evoker:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Size: 1
+  Type: Common
+  Price: 12000000
+  Min-Size: 0.5
+  Max-Size: 2
+Blaze:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Size: 1
+  Type: Rare
+  Price: 10000000
+  Min-Size: 0.5
+  Max-Size: 2
+Horse:
+  Can-Be-Ridden: false
+  Speed: 1.8
+  Size: 1
+  Type: Common
+  Price: 13000000
+  Min-Size: 0.5
+  Max-Size: 2
+Goat:
+  Can-Be-Ridden: false
+  Speed: 1.8
+  Size: 1
+  Type: Rare
+  Price: 1000000000
+  Min-Size: 0.5
+  Max-Size: 2
+Llama:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Mooshroom:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Common
+  Price: 20000000
+  Min-Size: 0.5
+  Max-Size: 2
+Mule:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Size: 1
+  Type: Common
+  Price: 18000000
+  Min-Size: 0.5
+  Max-Size: 2
+Ocelot:
+  Can-Be-Ridden: true
+  Speed: 1.8
+  Size: 1
+  Type: Common
+  Price: 18000000
+  Min-Size: 0.5
+  Max-Size: 2
+Hoglin:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Rare
+  Price: 100000000
+  Min-Size: 0.5
+  Max-Size: 2
+Panda:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Turtle:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: IslandChamp
+  Min-Size: 0.5
+  Max-Size: 2
+PolarBear:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+SkeletonHorse:
+  Can-Be-Ridden: false
+  Speed: 1.4
+  Size: 1
+  Type: Common
+  Price: 13000000
+  Min-Size: 0.5
+  Max-Size: 2
+SnowGolem:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Stray:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Common
+  Price: 20000000
+  Min-Size: 0.5
+  Max-Size: 2
+Vindicator:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Common
+  Price: 25000000
+  Min-Size: 0.5
+  Max-Size: 2
+Witch:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Rare
+  Price: 30000000
+  Min-Size: 0.5
+  Max-Size: 2
+WitherSkeleton:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Size: 1
+  Type: Rare
+  Price: 30000000
+  Min-Size: 0.5
+  Max-Size: 2
+Fox:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+SnowFox:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Size: 1
+  Type: Staff
+  Min-Size: 0.5
+  Max-Size: 2
+Wolf:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Size: 1
+  Type: Rare
+  Price: 40000000
+  Min-Size: 0.5
+  Max-Size: 2
+Zombie:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Size: 1
+  Type: Rare
+  Price: 12500000
+  Min-Size: 0.5
+  Max-Size: 2
+Pig:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Size: 1
+  Type: Rare
+  Price: 500000
+  Min-Size: 0.5
+  Max-Size: 2
+Sheep:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Size: 1
+  Type: IslandChamp
+  Min-Size: 0.5
+  Max-Size: 2
+ZombieHorse:
+  Can-Be-Ridden: false
+  Speed: 1.4
+  Size: 1
+  Type: Common
+  Price: 15000000
+  Min-Size: 0.5
+  Max-Size: 2
+ZombieVillager:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: Common
+  Price: 20000000
+  Min-Size: 0.5
+  Max-Size: 2
+IronGolem:
+  Can-Be-Ridden: true
+  Speed: 0.25
+  Size: 1
+  Type: Rare
+  Price: 25000000
+  Min-Size: 0.5
+  Max-Size: 2
+Enderman:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Size: 1
+  Type: IslandChamp
+  Min-Size: 0.5
+  Max-Size: 2
+Warden:
+  Can-Be-Ridden: true
+  Speed: 0.25
+  Size: 1
+  Type: Exclusive
+  Min-Size: 0.5
+  Max-Size: 2
+# Flying Pets
+Phantom:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Allay:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Rare
+  Price: 100000000
+  Min-Size: 0.5
+  Max-Size: 2
+Axolotl:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Rare
+  Price: 250000000
+  Min-Size: 0.5
+  Max-Size: 2
+GlowSquid:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: IslandChamp
+  Min-Size: 0.5
+  Max-Size: 2
+Cod:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Common
+  Price: 1000000
+  Min-Size: 0.5
+  Max-Size: 2
+Pufferfish:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Rare
+  Price: 5000000
+  Min-Size: 0.5
+  Max-Size: 2
+Salmon:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Rare
+  Price: 7500000
+  Min-Size: 0.5
+  Max-Size: 2
+TropicalFish:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Rare
+  Price: 10000000
+  Min-Size: 0.5
+  Max-Size: 2
+ElderGuardian:
+  Can-Be-Ridden: true
+  Speed: 1.8
+  Flying-Height: 60
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Parrot:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: IslandChamp
+  Min-Size: 0.5
+  Max-Size: 2
+Bee:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Bat:
+  Can-Be-Ridden: true
+  Speed: 1
+  Flying-Height: 8
+  Size: 1
+  Type: Common
+  Price: 25000000
+  Min-Size: 0.5
+  Max-Size: 2
+EnderDragon:
+  Can-Be-Ridden: true
+  Speed: 1.8
+  Flying-Height: 60
+  Size: 0.2
+  Type: Premium
+  Min-Size: 0.1
+  Max-Size: 0.8
+Ghast:
+  Can-Be-Ridden: true
+  Speed: 1.3
+  Flying-Height: 25
+  Size: 0.3
+  Type: Rare
+  Price: 75000000
+  Min-Size: 0.1
+  Max-Size: 0.8
+Vex:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Flying-Height: 25
+  Size: 1
+  Type: Exclusive
+  Min-Size: 0.5
+  Max-Size: 2
+Wither:
+  Can-Be-Ridden: true
+  Speed: 1.8
+  Flying-Height: 60
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+#bouncing
+MagmaCube:
+  Can-Be-Ridden: true
+  Speed: 1.4
+  Jumping-Height: 0.14
+  Size: 1
+  Type: Common
+  Price: 25000000
+  Min-Size: 0.5
+  Max-Size: 2
+Rabbit:
+  Can-Be-Ridden: true
+  Speed: 1.2
+  Jumping-Height: 0.1
+  Size: 1
+  Type: Premium
+  Min-Size: 0.5
+  Max-Size: 2
+Slime:
+  Can-Be-Ridden: true
+  Speed: 1.6
+  Jumping-Height: 0.14
+  Size: 1
+  Type: Rare
+  Price: 35000000
+  Min-Size: 0.5
+  Max-Size: 2
+...

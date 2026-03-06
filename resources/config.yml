@@ -1,0 +1,10 @@
+local: false
+send-discord: true
+database:
+  type: mysql
+  mysql:
+    host:
+    username:
+    password:
+    schema: ""
+  worker-limit: 4

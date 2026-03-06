@@ -1,0 +1,517 @@
+---
+starter:
+  items:
+    - "290:0:1:§e§oStarter Hoe§r:unbreaking:2"
+    - "17:0:5"
+    - "364:0:4"
+    - "295:0:2"
+    - "458:0:2"
+    - "391:0:2"
+    - "392:0:2"
+  key: "common:1"
+  helmet: "298:0:1:§b§oStarter Helmet§r:protection:1"
+  chestplate: "299:0:1:§b§oStarter Chestplate§r:protection:1"
+  leggings: "300:0:1:§b§oStarter Leggings§r:protection:1"
+  boots: "301:0:1:§b§oStarter Boots§r:protection:1"
+
+  commands:
+    - "tell {player} Claimed Starter Kit!"
+
+  chips: 25
+  money: 2500
+  cooldown:
+    hours: 6
+    minutes:
+  effects:
+    - "Night_Vision:800:2"
+    - "Haste:60:1"
+
+  info: "§aStarter §bKit - \n§eArmor §f- Protection 1\n§eEnchanted Tools §f- 1 x Wooden Hoe\n§eFood §f- x4 Steak\n§eMoney §f- 1000$\n§eChips §f- 25\n§eKeys §f- 1 Common Crate key\n§eCoolDown §f- 6 hours"
+pvp:
+  items:
+    - "261:0:1:§e§oPvP Bow§r:power:3:flame:3"
+    - "262:0:10"
+    - "282:0:1"
+    - "282:0:1"
+    - "267:0:1:§e§oPvP Sword§r:sharpness:1"
+  helmet: "302:0:1:§b§oPvP Helmet§r:protection:3"
+  chestplate: "303:0:1:§b§oPvP Chestplate§r:protection:3"
+  leggings: "304:0:1:§b§oPvP Leggings§r:protection:3"
+  boots: "305:0:1:§b§oPvP Boots§r:protection:3"
+
+  commands:
+    - "tell {player} Claimed PVP Kit!"
+
+  cooldown:
+    hours: 6
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "speed:120:1"
+
+  info: "§aPvP §bKit - \n§eArmor §f- Protection 3\n§eEnchanted Tools §f- 1 x Bow & 1 x Iron Sword\n§eFood §f- 2 x Soup\n§eCoolDown §f- 6 hours"
+guest:
+  items:
+    - "257:0:1:§e§oGuest Pickaxe§r:efficiency:1"
+    - "292:0:1:§e§oGuest Hoe§r:unbreaking:1"
+    - "267:0:1:§e§oGuest Sword§r:sharpness:2"
+    - "17:0:15"
+    - "264:0:1"
+    - "265:0:4"
+    - "365:0:3"
+    - "49:0:5"
+    - "322:0:2"
+    - "361:0:2"
+    - "362:0:2"
+  key: "common:2"
+  helmet: "302:0:1:§b§oGuest Helmet§r:protection:2"
+  chestplate: "307:0:1:§b§oGuest Chestplate§r:protection:2"
+  leggings: "304:0:1:§b§oGuest Leggings§r:protection:2"
+  boots: "305:0:1:§b§oGuest Boots§r:protection:2"
+
+  commands:
+    - "tell {player} Claimed Guest Kit!"
+
+  money: 2500
+  
+  chips: 50
+  cooldown:
+    hours: 24
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:300:1"
+  - "fire_resistance:300:1"
+  - "Haste:90:1"
+  info: "§aGuest §bKit - \n§eArmor §f- Protection 2\n§eEnchanted Tools §f- 1 x Iron Pickaxe, Sword, Hoe\n§eItems §f- Various items\n§eMoney §f- 2,500$\n§eChips §f- 50\n§eKeys §f- 2 Common Crate keys\n§eCoolDown §f- 24 hours"
+weekly:
+  items:
+    - "257:0:1:§e§oWeekly Pickaxe§r:efficiency:4"
+    - "292:0:1:§e§oWeekly Hoe§r:unbreaking:4"
+    - "267:0:1:§e§oWeekly Sword§r:sharpness:3"
+    - "17:0:10"
+    - "264:0:3"
+    - "265:0:5"
+    - "365:0:4"
+    - "49:0:20"
+    - "322:0:3"
+    - "466:0:1"
+    - "361:0:2"
+    - "362:0:2"
+  key: "common:3"
+  helmet: "306:0:1:§b§oWeekly Helmet§r:protection:3:fire_protection:2"
+  chestplate: "307:0:1:§b§oWeekly Chestplate§r:protection:3:fire_protection:2"
+  leggings: "308:0:1:§b§oWeekly Leggings§r:protection:3:fire_protection:2"
+  boots: "309:0:1:§b§oWeekly Boots§r:protection:3:fire_protection:2"
+
+  commands:
+    - "tell {player} Claimed Weekly Kit!"
+
+  chips: 75
+  money: 5000
+  cooldown:
+    hours: 168
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+    - "strength:300:1"
+    - "fire_resistance:300:1"
+    - "Haste:90:1"
+  info: "§aWeekly §bKit - \n§eIron Armor §f- Protection 3 & Fire Protection 2\n§eEnchanted Tools §f- 1 x Enchanted Iron Pickaxe, Sword, Hoe\n§eItems §f- Various items\n§eMoney §f- 5,000$\n§eChips §f- 75\n§eKeys §f- 3 Common Crate keys\n§eCoolDown §f- 7 days"
+voter:
+  items:
+    - "278:0:1:§e§oVoter Pickaxe§r:efficiency:2"
+    - "293:0:1:§e§oVoter Hoe§r:unbreaking:2"
+    - "276:0:1:§e§oVoter Sword§r:sharpness:2:looting:2"
+    - "17:0:32"
+    - "264:0:8"
+    - "265:0:15"
+    - "365:0:10"
+    - "49:0:32"
+    - "322:0:5"
+    - "466:0:1"
+    - "361:0:5"
+    - "362:0:5"
+  key: "common:3;vote:2"
+  helmet: "310:0:1:§b§oVoter Helmet§r:protection:3:fire_protection:2"
+  chestplate: "311:0:1:§b§oVoter Chestplate§r:protection:3:fire_protection:2"
+  leggings: "312:0:1:§b§oVoter Leggings§r:protection:3:fire_protection:2"
+  boots: "313:0:1:§b§oVoter Boots§r:protection:3:fire_protection:2"
+
+  commands:
+    - "tell {player} Claimed Voter Kit!"
+    - "unsetuperm {player} core.kit.voter"
+  
+  money: 5000
+  
+  cooldown:
+    hours: 18
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "Haste:90:1"
+  info: "§aVoter §bKit - \n§eDia Armor §f- Protection 3 & Fire Protection 2\n§eEnchanted Tools §f- 1 x Diamond Pickaxe & 1 x Diamond Sword & 1 x Diamond Hoe\n§eItems §f- Various items\n§eMoney §f- 5,000$\n§eKeys §f- 3 Common & 2 Vote Crate keys\n§eCoolDown §f- Till you /vote again"
+partner:
+
+  items:
+    - "278:0:1:§e§oPartner Pickaxe§r:efficiency:2"
+    - "276:0:1:§e§oPartner Sword§r:sharpness:2:looting:2"
+    - "293:0:1:§e§oPartner Hoe§r:unbreaking:3"
+    - "264:0:5"
+    - "265:0:20"
+    - "297:0:20"
+    - "49:0:20"
+    - "322:0:5"
+    - "361:0:10"
+    - "362:0:10"
+  key: "common:2;rare:1"
+  helmet: "310:0:1:§b§oPartner Helmet§r:protection:3"
+  chestplate: "311:0:1:§b§oPartner Chestplate§r:protection:3"
+  leggings: "312:0:1:§b§oPartner Leggings§r:protection:3"
+  boots: "313:0:1:§b§oPartner Boots§r:protection:3"
+
+  commands:
+    - "tell {player} Claimed Partner Kit!"
+  cooldown:
+    hours: 12
+    minutes:
+
+  chips: 75
+  money: 8000
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:300:1"
+  - "Haste:90:1"
+  info: "§aPartner §bKit - \n§eArmor §f- Diamond Protection 3\n§eEnchanted Tools §f- 1 x Diamond Pickaxe & 1 x Dia Sword & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 8,000$\n§eChips §f- 75\n§eKeys §f- 2 Common & 1 Rare Crate key\n§eCoolDown §f- 12 hours"
+king:
+
+  items:
+    - "278:0:1:§e§oKing Pickaxe§r:efficiency:3"
+    - "276:0:1:§e§oKing Sword§r:sharpness:2:looting:2"
+    - "293:0:1:§e§oKing Hoe§r:unbreaking:4"
+    - "264:0:1"
+    - "265:0:5"
+    - "297:0:10"
+    - "49:0:20"
+    - "322:0:5"
+    - "361:0:10"
+    - "362:0:10"
+  key: "common:1"
+  helmet: "310:0:1:§b§oKing Helmet§r:protection:3"
+  chestplate: "311:0:1:§b§oKing Chestplate§r:protection:3"
+  leggings: "312:0:1:§b§oKing Leggings§r:protection:3"
+  boots: "313:0:1:§b§oKing Boots§r:protection:3"
+
+  commands:
+    - "tell {player} Claimed King Kit!"
+  cooldown:
+    hours: 12
+    minutes:
+    
+  chips: 80
+  money: 2500
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:300:1"
+  - "Haste:90:1"
+  info: "§aKing §bKit - \n§eArmor §f- Diamond Protection 3\n§eEnchanted Tools §f- 1 x Diamond Pickaxe & 1 x Dia Sword & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 2,500$\n§eChips §f- 80\n§eKeys §f- 1 Common Crate key\n§eCoolDown §f- 12 hours"
+vip:
+  items:
+    - "278:0:1:§e§oVIP Pickaxe§r:efficiency:3:unbreaking:2"
+    - "276:0:1:§e§oVIP Sword§r:sharpness:3:fire_aspect:2:looting:2"
+    - "293:0:1:§e§oVIP Hoe§r:unbreaking:2"
+    - "264:0:2"
+    - "265:0:6"
+    - "297:0:12"
+    - "49:0:22"
+    - "322:0:8"
+    - "351:4:5"
+    - "361:0:15"
+    - "362:0:15"
+  key: "common:1"
+  helmet: "310:0:1:§b§oVIP Helmet§r:protection:4:fire_protection:3"
+  chestplate: "311:0:1:§b§oVIP Chestplate§r:protection:4:fire_protection:3"
+  leggings: "312:0:1:§b§oVIP Leggings§r:protection:4:fire_protection:3"
+  boots: "313:0:1:§b§oVIP Boots§r:protection:4:fire_protection:3"
+
+  commands:
+    - "tell {player} Claimed VIP Kit!"
+
+  chips: 100
+  money: 5000
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+    - "Haste:120:1"
+
+  info: "§aVIP §bKit - \n§eArmor §f- Protection 4 & Fire Protection 3\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 5,000$\n§eChips §f- 100\n§eKeys §f- 1 Common crate key\n§eCoolDown §f- 12 hours"
+myth:
+  items:
+    - "278:0:1:§e§oMyth Pickaxe§r:efficiency:3:unbreaking:3"
+    - "276:0:1:§e§oMyth Sword§r:sharpness:3:fire_aspect:3:looting:2"
+    - "279:0:1:§e§oMyth Axe§r:unbreaking:2"
+    - "293:0:1:§e§oMyth Hoe§r:unbreaking:2"
+    - "264:0:2"
+    - "265:0:7"
+    - "297:0:15"
+    - "49:0:25"
+    - "322:0:8"
+    - "351:4:10"
+    - "7:0:10"
+    - "361:0:20"
+    - "362:0:20"
+  key: "common:1;rare:1"
+  helmet: "310:0:1:§b§oMyth Helmet§r:protection:4:fire_protection:3"
+  chestplate: "311:0:1:§b§oMyth Chestplate§r:protection:4:fire_protection:3"
+  leggings: "312:0:1:§b§oMyth Leggings§r:protection:4:fire_protection:3"
+  boots: "313:0:1:§b§oMyth Boots§r:protection:4:fire_protection:3"
+
+  commands:
+    - "tell {player} Claimed Myth Kit!"
+
+  money: 7500
+  chips: 150
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+    - "strength:600:2"
+  info: "§aMyth §bKit - \n§eArmor §f- Protection 4 & Fire protection 3\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Axe & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 7,500$\n§eChips §f- 150\n§eKeys §f- 1 Common & 1 Rare Crate key\n§eCoolDown §f- 12 hours"
+skylord:
+  items:
+    - "278:0:1:§e§oSkylord Pickaxe§r:efficiency:3:unbreaking:3"
+    - "276:0:1:§e§oSkylord Sword§r:sharpness:3:fire_aspect:3:looting:3"
+    - "279:0:1:§e§oSkylord Axe§r:unbreaking:3:efficiency:3"
+    - "293:0:1:§e§oSkylord Hoe§r:unbreaking:3:efficiency:3"
+    - "264:0:2"
+    - "265:0:10"
+    - "297:0:15"
+    - "322:0:10"
+    - "351:4:10"
+    - "7:0:12"
+    - "361:0:25"
+    - "362:0:25"
+  key: "legendary:1"
+  helmet: "310:0:1:§b§oSkylord Helmet§r:protection:5:fire_protection:4"
+  chestplate: "311:0:1:§b§oSkylord Chestplate§r:protection:5:fire_protection:4"
+  leggings: "312:0:1:§b§oSkylord Leggings§r:protection:5:fire_protection:4"
+  boots: "313:0:1:§b§oSkylord Boots§r:protection:5:fire_protection:4"
+
+  commands:
+    - "tell {player} Claimed SkyLord Kit!"
+  
+  chips: 200
+  money: 8000
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:600:2"
+  - "health_boost:300:2"
+  info: "§aSkyLord §bKit - \n§eArmor §f- Protection 5 & Fire protection 4\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Axe & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 8,000$\n§eChips §f- 200\n§eKeys §f- 1 Legendary Crate key\n§eCoolDown §f- 12 hours"
+skygod:
+  items:
+    - "278:0:1:§e§oSkyGOD Pickaxe§r:efficiency:4:unbreaking:4"
+    - "276:0:1:§e§oSkyGOD Sword§r:sharpness:4:fire_aspect:4:looting:3"
+    - "279:0:1:§e§oSkyGOD Axe§r:unbreaking:4:efficiency:4"
+    - "293:0:1:§e§oSkyGOD Hoe§r:unbreaking:4:efficiency:4"
+    - "264:0:5"
+    - "265:0:12"
+    - "297:0:18"
+    - "322:0:12"
+    - "351:4:10"
+    - "7:0:15"
+  key: "legendary:1"
+  helmet: "310:0:1:§b§oSkyGOD Helmet§r:protection:5:fire_protection:5"
+  chestplate: "311:0:1:§b§oSkyGOD Chestplate§r:protection:5:fire_protection:5"
+  leggings: "312:0:1:§b§oSkyGOD Leggings§r:protection:5:fire_protection:5"
+  boots: "313:0:1:§b§oSkyGOD Boots§r:protection:5:fire_protection:5"
+
+  commands:
+    - "tell {player} Claimed SkyGOD Kit!"
+  
+  chips: 250
+  xp: 250
+  money: 10000
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:600:2"
+  - "health_boost:300:2"
+  info: "§aSkyGOD §bKit - \n§eArmor §f- Protection 5 & Fire protection 5\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Axe & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 10,000$\n§6XP §f- 250XP\n§eChips §f- 250\n§eKeys §f- 1 Legendary Crate key\n§eCoolDown §f- 12 hours"
+skyzeus:
+  items:
+    - "278:0:1:§e§oSkyZEUS Pickaxe§r:efficiency:5:unbreaking:4"
+    - "276:0:1:§e§oSkyZEUS Sword§r:sharpness:5:fire_aspect:4:looting:4"
+    - "279:0:1:§e§oSkyZEUS Axe§r:unbreaking:5:efficiency:4"
+    - "293:0:1:§e§oSkyZEUS Hoe§r:unbreaking:5:efficiency:4"
+    - "264:0:8"
+    - "265:0:15"
+    - "297:0:20"
+    - "2:0:32"
+    - "49:0:20"
+    - "322:0:12"
+    - "466:0:1"
+    - "351:4:18"
+    - "7:0:18"
+  key: "rare:1;legendary:1"
+  helmet: "310:0:1:§b§oSkyZEUS Helmet§r:protection:5:fire_protection:5:unbreaking:3"
+  chestplate: "311:0:1:§b§oSkyZEUS Chestplate§r:protection:5:fire_protection:5:unbreaking:3"
+  leggings: "312:0:1:§b§oSkyZEUS Leggings§r:protection:5:fire_protection:5:unbreaking:3"
+  boots: "313:0:1:§b§oSkyZEUS Boots§r:protection:5:fire_protection:5:unbreaking:3"
+
+  commands:
+    - "tell {player} Claimed SkyZEUS Kit!"
+  
+  chips: 300
+  xp: 300
+  money: 12500
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:600:2"
+  - "health_boost:350:2"
+
+  info: "§aSkyZEUS §bKit - \n§eArmor §f- Protection 5 & Fire protection 5\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Axe & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 12,500$\n§6XP §f- 300XP\n§eChips §f- 300\n§eKeys §f- 1 Rare & 1 Legendary Crate key\n§eCoolDown §f- 12 hours"
+skyelite:
+  items:
+    - "278:0:1:§e§oSkyELITE Pickaxe§r:efficiency:5:unbreaking:5"
+    - "276:0:1:§e§oSkyELITE Sword§r:sharpness:5:fire_aspect:5:looting:5"
+    - "279:0:1:§e§oSkyELITE Axe§r:unbreaking:5:efficiency:5"
+    - "293:0:1:§e§oSkyELITE Hoe§r:unbreaking:5:efficiency:5"
+    - "264:0:10"
+    - "265:0:15"
+    - "297:0:20"
+    - "322:0:15"
+    - "466:0:1"
+    - "351:4:20"
+    - "2:0:64"
+  key: "legendary:1;mystic:1"
+  helmet: "310:0:1:§b§oSkyELITE Helmet§r:protection:5:fire_protection:5:unbreaking:4"
+  chestplate: "311:0:1:§b§oSkyELITE Chestplate§r:protection:5:fire_protection:5:unbreaking:4"
+  leggings: "312:0:1:§b§oSkyELITE Leggings§r:protection:5:fire_protection:5:unbreaking:4"
+  boots: "313:0:1:§b§oSkyELITE Boots§r:protection:5:fire_protection:5:unbreaking:4"
+
+  commands:
+    - "tell {player} Claimed SkyELITE Kit!"
+  
+  chips: 350
+  money: 15000
+  xp: 500
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:600:2"
+  - "health_boost:400:2"
+
+  info: "§aSkyELITE §bKit - \n§eArmor §f- Protection 5 & Fire protection 5\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Axe & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 15,000$\n§6XP §f- 500XP\n§eChips §f- 350\n§eKeys §f- 1 Legendary & 1 Mystic Crate keys\n§eCoolDown §f- 12 hours"
+skyhulk:
+  items:
+    - "278:0:1:§e§oSkyHULK Pickaxe§r:efficiency:5:unbreaking:5"
+    - "276:0:1:§e§oSkyHULK Sword§r:sharpness:5:fire_aspect:5:looting:5"
+    - "279:0:1:§e§oSkyHULK Axe§r:unbreaking:5:efficiency:6"
+    - "293:0:1:§e§oSkyHULK Hoe§r:unbreaking:5:efficiency:5"
+    - "264:0:12"
+    - "265:0:18"
+    - "297:0:20"
+    - "49:0:20"
+    - "466:0:1"
+    - "351:4:20"
+    - "2:0:64"
+    - "2:0:10"
+    - "7:0:15"
+  key: "legendary:2;mystic:1"
+  helmet: "310:0:1:§b§oSkyHULK Helmet§r:protection:5:fire_protection:5:unbreaking:5"
+  chestplate: "311:0:1:§b§oSkyHULK Chestplate§r:protection:5:fire_protection:5:unbreaking:5"
+  leggings: "312:0:1:§b§oSkyHULK Leggings§r:protection:5:fire_protection:5:unbreaking:5"
+  boots: "313:0:1:§b§oSkyHULK Boots§r:protection:5:fire_protection:5:unbreaking:5"
+
+  commands:
+    - "tell {player} Claimed SkyHULK Kit!"
+  
+  chips: 400
+  money: 17500
+  xp: 600
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:600:2"
+  - "health_boost:450:2"
+
+  info: "§aSkyHULK §bKit - \n§eArmor §f- Protection 5 & Fire protection 5\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Axe & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 17,500$\n§6XP §f- 600XP\n§eChips §f- 400\n§eKeys §f- 2 Legendary & 1 Mystic Crate keys\n§eCoolDown §f- 12 hours"
+skywarrior:
+  items:
+    - "278:0:1:§e§oSkyWARRIOR Pickaxe§r:efficiency:6:unbreaking:6"
+    - "276:0:1:§e§oSkyWARRIOR Sword§r:sharpness:6:fire_aspect:6:looting:6"
+    - "279:0:1:§e§oSkyWARRIOR Axe§r:unbreaking:6:efficiency:6"
+    - "293:0:1:§e§oSkyWARRIOR Hoe§r:unbreaking:6:efficiency:6"
+    - "264:0:15"
+    - "265:0:20"
+    - "297:0:20"
+    - "466:0:2"
+    - "351:4:20"
+    - "2:0:64"
+    - "2:0:20"
+    - "7:0:15"
+  key: "legendary:1;mystic:2"
+  helmet: "310:0:1:§b§oSkyWARRIOR Helmet§r:protection:6:fire_protection:6:unbreaking:6"
+  chestplate: "311:0:1:§b§oSkyWARRIOR Chestplate§r:protection:6:fire_protection:6:unbreaking:6"
+  leggings: "312:0:1:§b§oSkyWARRIOR Leggings§r:protection:6:fire_protection:6:unbreaking:6"
+  boots: "313:0:1:§b§oSkyWARRIOR Boots§r:protection:6:fire_protection:6:unbreaking:6"
+
+  commands:
+    - "tell {player} Claimed SkyWARRIOR Kit!"
+  
+  chips: 500
+  money: 20000
+  xp: 600
+  cooldown:
+    hours: 12
+    minutes:
+
+  # Format: "name:time:amplifier"
+  # Time is in seconds
+  effects:
+  - "strength:600:2"
+  - "health_boost:600:2"
+
+  info: "§aSkyWARRIOR §bKit - \n§eArmor §f- Protection 6 & Fire protection 6\n§eEnchanted Tools §f- 1 x Dia Pickaxe & 1 x Dia Sword & 1 x Dia Axe & 1 x Dia Hoe\n§eItems §f- Various items\n§eMoney §f- 20,000$\n§6XP §f- 600XP\n§eChips §f- 500\n§eKeys §f- 1 Legendary & 2 Mystic Crate keys\n§eCoolDown §f- 12 hours"
+...

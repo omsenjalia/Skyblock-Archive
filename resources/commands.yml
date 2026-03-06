@@ -1,0 +1,16 @@
+# Config file for TimeCommander by LDX;
+
+# List of commands for the plugin to execute at the given times;
+# Command: Command to execute;
+# Time: Amount of time in minutes between command executions;
+Commands:
+  - Command: bcast Follow our Twitter @RealFallenTech and join Discord - https://discord.fallentech.io for Updates, Coupons and Giveaways! App - Fallentech.io/app
+    Time: 18
+  - Command: clearlagg clearall
+    Time: 8
+  - Command: checkvote senddiscord
+    Time: 10
+  - Command: tebex forcecheck
+    Time: 9
+  - Command: gc
+    Time: 10
