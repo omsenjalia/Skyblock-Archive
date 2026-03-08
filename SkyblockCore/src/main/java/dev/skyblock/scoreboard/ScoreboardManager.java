@@ -1,10 +1,13 @@
 package dev.skyblock.scoreboard;
 
 import dev.skyblock.SkyblockCore;
+import dev.skyblock.island.Island;
 import dev.skyblock.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
+
+import java.util.Optional;
 
 public class ScoreboardManager {
     private final SkyblockCore plugin;
@@ -21,13 +24,25 @@ public class ScoreboardManager {
         Objective obj = board.registerNewObjective("skyblock", Criteria.DUMMY, "§3§lF§bT §eSkyBlock");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
+        int islandLevel = 0;
+        if (!user.getIsland().isEmpty()) {
+            Optional<Island> islandOpt = plugin.getIslandManager().getIslandByName(user.getIsland());
+            islandLevel = islandOpt.map(Island::getLevel).orElse(0);
+        }
+
         obj.getScore("§7----------------").setScore(6);
         obj.getScore("§fSeason: §e1").setScore(5);
-        obj.getScore("§fIsland Level: §e" + (user.getIsland().isEmpty() ? "0" : "1")).setScore(4);
+        obj.getScore("§fIsland Level: §e" + islandLevel).setScore(4);
         obj.getScore("§fBalance: §a$" + (int)user.getMoney()).setScore(3);
         obj.getScore("§fKills: §c" + user.getKills()).setScore(2);
         obj.getScore("§7---------------- ").setScore(1);
 
         player.setScoreboard(board);
+    }
+
+    public void refreshAll() {
+        for (org.bukkit.entity.Player player : org.bukkit.Bukkit.getOnlinePlayers()) {
+            updateScoreboard(player);
+        }
     }
 }

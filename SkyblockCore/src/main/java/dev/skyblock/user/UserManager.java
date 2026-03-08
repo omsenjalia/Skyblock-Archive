@@ -53,8 +53,8 @@ public class UserManager {
     }
 
     public void shutdown() {
-        for (UUID uuid : users.keySet()) {
-            saveUser(uuid);
+        for (User user : users.values()) {
+            repository.saveUserSync(user);
         }
         users.clear();
     }

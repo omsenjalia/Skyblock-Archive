@@ -49,6 +49,12 @@ public class SkyblockCore extends JavaPlugin {
         petManager = new PetManager(this);
         scoreboardManager = new ScoreboardManager(this);
 
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            for (org.bukkit.entity.Player p : Bukkit.getOnlinePlayers()) {
+                scoreboardManager.updateScoreboard(p);
+            }
+        }, 20L, 20L); // update every second
+
         // Register Command Factory
         new CommandFactory(this);
 
