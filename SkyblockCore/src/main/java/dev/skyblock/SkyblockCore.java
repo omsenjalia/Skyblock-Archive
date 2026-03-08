@@ -9,6 +9,8 @@ import dev.skyblock.island.IslandManager;
 import dev.skyblock.item.ItemManager;
 import dev.skyblock.pets.PetManager;
 import dev.skyblock.scoreboard.ScoreboardManager;
+import dev.skyblock.shop.ShopListener;
+import dev.skyblock.shop.ShopManager;
 import dev.skyblock.tiles.TileManager;
 import dev.skyblock.user.UserManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,6 +30,7 @@ public class SkyblockCore extends JavaPlugin {
     private TileManager tileManager;
     private PetManager petManager;
     private ScoreboardManager scoreboardManager;
+    private ShopManager shopManager;
 
     public static final String JOIN_MESSAGE = "Catalysts have been changed. they now spawn blocks on top of them ONLY. They no longer need water.";
 
@@ -48,6 +51,7 @@ public class SkyblockCore extends JavaPlugin {
         tileManager = new TileManager(this);
         petManager = new PetManager(this);
         scoreboardManager = new ScoreboardManager(this);
+        shopManager = new ShopManager(this);
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             for (org.bukkit.entity.Player p : Bukkit.getOnlinePlayers()) {
@@ -60,6 +64,7 @@ public class SkyblockCore extends JavaPlugin {
 
         // Register Listeners
         Bukkit.getPluginManager().registerEvents(new MainEventListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new ShopListener(shopManager), this);
 
         getLogger().info("SkyblockCore by Infernus101 has been Enabled!");
         Bukkit.broadcast(MiniMessage.miniMessage().deserialize("<green><bold>> <yellow>" + JOIN_MESSAGE));
@@ -116,5 +121,9 @@ public class SkyblockCore extends JavaPlugin {
 
     public ScoreboardManager getScoreboardManager() {
         return scoreboardManager;
+    }
+
+    public ShopManager getShopManager() {
+        return shopManager;
     }
 }

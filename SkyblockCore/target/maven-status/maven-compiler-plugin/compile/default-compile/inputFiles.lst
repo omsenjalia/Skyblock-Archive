@@ -2,6 +2,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Potshot.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Molten.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Lifesteal.java
+/app/SkyblockCore/src/main/java/dev/skyblock/shop/ShopHolder.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Disarm.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Devour.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Gears.java
@@ -43,6 +44,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/bow/Shuffle.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/DisarmorProtection.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Enlighten.java
+/app/SkyblockCore/src/main/java/dev/skyblock/shop/ShopManager.java
 /app/SkyblockCore/src/main/java/dev/skyblock/pets/PetManager.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/BaseTouchEnchant.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/BaseBlockEnchant.java
@@ -102,6 +104,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Woodcutter.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Deflate.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Replanter.java
+/app/SkyblockCore/src/main/java/dev/skyblock/shop/ShopListener.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Chisel.java
 /app/SkyblockCore/src/main/java/dev/skyblock/item/ItemManager.java
 /app/SkyblockCore/src/main/java/dev/skyblock/command/TileGiveCommand.java

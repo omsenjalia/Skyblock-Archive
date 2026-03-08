@@ -8,6 +8,7 @@ dev/skyblock/enchants/sword/Detonate.class
 dev/skyblock/enchants/bow/Launcher.class
 dev/skyblock/enchants/block/LuckOfTheSky.class
 dev/skyblock/enchants/block/Devour.class
+dev/skyblock/shop/ShopListener.class
 dev/skyblock/enchants/sword/Disarmor.class
 dev/skyblock/command/WarpCommand.class
 dev/skyblock/enchants/block/Booster.class
@@ -28,6 +29,7 @@ dev/skyblock/tiles/TileManager$1.class
 dev/skyblock/enchants/sword/Poison.class
 dev/skyblock/enchants/sword/CripplingStrike.class
 dev/skyblock/command/CommandFactory.class
+dev/skyblock/shop/ShopHolder.class
 dev/skyblock/enchants/armor/Virtuous.class
 dev/skyblock/enchants/BaseEnchant.class
 dev/skyblock/command/CustomEnchantCommand.class
@@ -49,6 +51,7 @@ dev/skyblock/enchants/sword/Thunderbolt.class
 dev/skyblock/enchants/armor/LifeShield.class
 dev/skyblock/enchants/sword/SoulSnatcher.class
 dev/skyblock/tiles/HopperTile.class
+dev/skyblock/shop/ShopManager$1.class
 dev/skyblock/tiles/AutoSellerTile.class
 dev/skyblock/enchants/block/Prosperity.class
 dev/skyblock/enchants/sword/Wither.class
@@ -74,6 +77,7 @@ dev/skyblock/command/ShopCommand.class
 dev/skyblock/enchants/armor/Sharingan.class
 dev/skyblock/enchants/BaseBowEnchant.class
 dev/skyblock/enchants/touch/Scythe.class
+dev/skyblock/shop/ShopHolder$ShopMenu.class
 dev/skyblock/enchants/armor/Tank.class
 dev/skyblock/enchants/sword/Vampire.class
 dev/skyblock/enchants/block/Firma.class
@@ -114,6 +118,7 @@ dev/skyblock/enchants/sword/Backstabber.class
 dev/skyblock/enchants/block/Barter.class
 dev/skyblock/enchants/armor/Shielded.class
 dev/skyblock/enchants/armor/Bloom.class
+dev/skyblock/shop/ShopManager.class
 dev/skyblock/command/BaltopCommand.class
 dev/skyblock/enchants/armor/Endershift.class
 dev/skyblock/enchants/block/Smelting.class

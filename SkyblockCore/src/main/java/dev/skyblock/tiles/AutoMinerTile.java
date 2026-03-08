@@ -66,8 +66,8 @@ public class AutoMinerTile extends BaseTile {
         Island island = plugin.getIslandManager().getOnlineIslandByWorld(worldName).orElse(null);
         if (island == null) return;
 
-        // Block to mine = 2 below the AutoMiner
-        Block target = location.getBlock().getRelative(0, -2, 0);
+        // Block to mine = 1 below the AutoMiner
+        Block target = location.getBlock().getRelative(0, -1, 0);
         // Chest = 1 above the AutoMiner
         Block aboveBlock = location.getBlock().getRelative(0, 1, 0);
 

@@ -19,6 +19,7 @@ public class User {
     public double getMoney() { return money; }
     public void setMoney(double m) { this.money = m; }
     public void addMoney(double a) { this.money += a; }
+    public void removeMoney(double amount) { this.money -= amount; }
     public int getMobcoin() { return mobcoin; }
     public void setMobcoin(int m) { this.mobcoin = m; }
     public void addMobcoin(int a) { this.mobcoin += a; }
