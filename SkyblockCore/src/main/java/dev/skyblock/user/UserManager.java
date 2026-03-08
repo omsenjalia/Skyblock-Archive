@@ -22,17 +22,18 @@ public class UserManager {
         UUID uuid = player.getUniqueId();
         String name = player.getName();
 
-        repository.loadUser(name, user -> {
+        repository.loadUser(uuid, name, user -> {
+            // callback is already on main thread (synced in repository)
             if (user != null) {
                 users.put(uuid, user);
             } else {
-                // Create new user
                 User newUser = new User(uuid, name);
                 newUser.setMoney(3000);
                 newUser.setMana(50);
                 users.put(uuid, newUser);
-                saveUser(uuid);
+                repository.saveUser(newUser);
             }
+            plugin.getScoreboardManager().updateScoreboard(player);
         });
     }
 

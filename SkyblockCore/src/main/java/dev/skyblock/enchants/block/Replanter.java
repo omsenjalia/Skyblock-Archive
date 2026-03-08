@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Replanter extends BaseBlockEnchant {
-    public static final int ID = 0;
+    public static final int ID = 201;
 
     public Replanter() {
         super(ID, "Replanter", 5);

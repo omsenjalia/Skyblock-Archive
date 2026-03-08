@@ -41,6 +41,7 @@ public class SkyblockCore extends JavaPlugin {
         databaseManager = new DatabaseManager(this);
         userManager = new UserManager(this);
         islandManager = new IslandManager(this);
+        islandManager.loadAllIslands();
         gangManager = new GangManager(this);
         enchantManager = new EnchantManager(this);
         itemManager = new ItemManager(this);

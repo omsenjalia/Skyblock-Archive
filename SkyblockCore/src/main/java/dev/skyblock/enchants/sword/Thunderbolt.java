@@ -3,7 +3,7 @@ import dev.skyblock.enchants.BaseMeleeEnchant;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class Thunderbolt extends BaseMeleeEnchant {
-    public static final int ID = 112;
+    public static final int ID = 179;
     public Thunderbolt() { super(ID, "Thunderbolt", 15); }
     @Override
     public boolean isApplicableTo(Player holder, int level) { return java.util.concurrent.ThreadLocalRandom.current().nextInt(1, 26) == 1; }

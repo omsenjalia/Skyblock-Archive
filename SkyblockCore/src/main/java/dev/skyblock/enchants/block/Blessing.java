@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Blessing extends BaseBlockEnchant {
-    public static final int ID = 0;
+    public static final int ID = 202;
 
     public Blessing() {
         super(ID, "Blessing", 5);

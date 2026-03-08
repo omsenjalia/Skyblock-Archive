@@ -5,7 +5,7 @@ import dev.skyblock.user.User;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class Wizardly extends BaseMeleeEnchant {
-    public static final int ID = 133;
+    public static final int ID = 177;
     public Wizardly() { super(ID, "Wizardly", 15); }
     @Override
     public boolean isApplicableTo(Player holder, int level) { return java.util.concurrent.ThreadLocalRandom.current().nextInt(1, 26) == 1; }
