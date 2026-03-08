@@ -20,6 +20,10 @@ public class TileManager {
     public TileManager(SkyblockCore plugin) {
         this.plugin = plugin;
         this.dataFile = new File(plugin.getDataFolder(), "tiles.yml");
+        // Ensure plugin data folder exists before trying to load/save
+        if (!dataFile.getParentFile().exists()) {
+            dataFile.getParentFile().mkdirs();
+        }
         this.dataConfig = YamlConfiguration.loadConfiguration(dataFile);
         loadTiles();
 
@@ -31,7 +35,7 @@ public class TileManager {
                 }
             }
         };
-        this.updateTask.runTaskTimer(plugin, 20L, 1L); // run every tick
+        this.updateTask.runTaskTimer(plugin, 20L, 1L);
     }
 
     public void addTile(Location loc, BaseTile tile) {
@@ -125,7 +129,6 @@ public class TileManager {
 
     public void shutdown() {
         updateTask.cancel();
-        // Save all tiles
         for (Map.Entry<Location, BaseTile> entry : tiles.entrySet()) {
             saveTile(entry.getKey(), entry.getValue());
         }
