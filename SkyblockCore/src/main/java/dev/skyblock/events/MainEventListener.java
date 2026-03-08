@@ -6,6 +6,7 @@ import dev.skyblock.tiles.*;
 import dev.skyblock.user.User;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 public class MainEventListener implements Listener {
     private final SkyblockCore plugin;
@@ -63,7 +66,7 @@ public class MainEventListener implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        // Island build permission
+        // Island permission check
         Island island = getIslandForBlock(block.getLocation());
         if (island != null && !island.isAnOwner(player.getName()) && !island.getHelpers().contains(player.getName().toLowerCase())) {
             event.setCancelled(true);
@@ -75,33 +78,48 @@ public class MainEventListener implements Listener {
         if (user != null) user.addBlocks(1);
 
         TileManager tm = plugin.getTileManager();
-        if (tm.hasTile(block.getLocation())) {
-            tm.removeTile(block.getLocation());
+        Location loc = block.getLocation();
+        if (tm.hasTile(loc)) {
+            BaseTile tile = tm.getTile(loc);
+            tm.removeTile(loc);
+
+            // Cancel default drops and give back the tile item
+            event.setDropItems(false);
+            ItemStack drop = getTileItem(tile);
+            if (drop != null) {
+                block.getWorld().dropItemNaturally(block.getLocation().add(0.5, 0.5, 0.5), drop);
+            }
         }
     }
 
-    // Ore Gens — fixed ore per block
-    private static final java.util.Map<Material, Material> ORE_GEN_BLOCKS = java.util.Map.of(
-        Material.CYAN_GLAZED_TERRACOTTA,   Material.DIAMOND_ORE,
-        Material.GREEN_GLAZED_TERRACOTTA,  Material.EMERALD_ORE,
-        Material.WHITE_GLAZED_TERRACOTTA,  Material.IRON_ORE,
-        Material.YELLOW_GLAZED_TERRACOTTA, Material.GOLD_ORE,
-        Material.BLUE_GLAZED_TERRACOTTA,   Material.LAPIS_ORE
-    );
-
-    // Functional tiles
-    private static final Material AUTOSELLER_BLOCK = Material.BARREL;
-    private static final Material AUTOMINER_BLOCK  = Material.SLIME_BLOCK;
-    private static final Material CATALYST_BLOCK   = Material.PURPLE_GLAZED_TERRACOTTA;
-    private static final Material HOPPER_BLOCK     = Material.HOPPER;
+    private ItemStack getTileItem(BaseTile tile) {
+        if (tile instanceof OreGenTile ogt) {
+            return TileItemFactory.createOreGen(ogt.getOreType(), 1);
+        } else if (tile instanceof AutoSellerTile ast) {
+            return TileItemFactory.createAutoSeller(ast.getData().getLevel(), ast.getData().getType());
+        } else if (tile instanceof AutoMinerTile amt) {
+            return TileItemFactory.createAutoMiner(amt.getData().getLevel(), amt.getData().getFortuneEnabled(), amt.getData().getFortuneLevel());
+        } else if (tile instanceof CatalystTile) {
+            return TileItemFactory.createCatalyst();
+        }
+        return null;
+    }
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         Block block = event.getBlockPlaced();
-        TileManager tm = plugin.getTileManager();
+        ItemStack item = event.getItemInHand();
 
-        // Check island permission
+        // Only process if item has our tile_type PDC tag
+        if (!item.hasItemMeta()) return;
+        ItemMeta meta = item.getItemMeta();
+        NamespacedKey typeKey = new NamespacedKey(plugin, TileItemFactory.KEY_TILE_TYPE);
+        if (!meta.getPersistentDataContainer().has(typeKey, PersistentDataType.STRING)) return;
+
+        String tileType = meta.getPersistentDataContainer().get(typeKey, PersistentDataType.STRING);
+
+        // Island permission check
         Island island = getIslandForBlock(block.getLocation());
         if (island != null && !island.isAnOwner(player.getName()) && !island.getHelpers().contains(player.getName().toLowerCase())) {
             event.setCancelled(true);
@@ -109,33 +127,40 @@ public class MainEventListener implements Listener {
             return;
         }
 
-        ItemStack item = event.getItemInHand();
-        int level = 1;
-        if (item.hasItemMeta()) {
-            var pdc = item.getItemMeta().getPersistentDataContainer();
-            var key = new org.bukkit.NamespacedKey(plugin, "tile_level");
-            level = pdc.getOrDefault(key, org.bukkit.persistence.PersistentDataType.INTEGER, 1);
-        }
+        TileManager tm = plugin.getTileManager();
+        NamespacedKey levelKey = new NamespacedKey(plugin, TileItemFactory.KEY_TILE_LEVEL);
+        int level = meta.getPersistentDataContainer().getOrDefault(levelKey, PersistentDataType.INTEGER, 1);
 
-        // Ore gen blocks
-        if (ORE_GEN_BLOCKS.containsKey(block.getType())) {
-            Material oreType = ORE_GEN_BLOCKS.get(block.getType());
-            tm.addTile(block.getLocation(), new OreGenTile(block.getLocation(), oreType));
-            return;
-        }
-
-        // Functional tiles
-        TileData data = new TileData(level);
-        BaseTile tile = switch (block.getType()) {
-            case BARREL     -> new AutoSellerTile(block.getLocation(), data);
-            case SLIME_BLOCK -> new AutoMinerTile(block.getLocation(), data);
-            case PURPLE_GLAZED_TERRACOTTA -> new CatalystTile(block.getLocation());
-            case HOPPER -> level > 1 ? new HopperTile(block.getLocation()) : null;
+        BaseTile tile = switch (tileType) {
+            case TileItemFactory.TYPE_OREGEN -> {
+                NamespacedKey oreKey = new NamespacedKey(plugin, TileItemFactory.KEY_ORE_TYPE);
+                String oreName = meta.getPersistentDataContainer().get(oreKey, PersistentDataType.STRING);
+                Material oreType = oreName != null ? Material.getMaterial(oreName) : Material.IRON_ORE;
+                if (oreType == null) oreType = Material.IRON_ORE;
+                yield new OreGenTile(block.getLocation(), oreType);
+            }
+            case TileItemFactory.TYPE_AUTOSELLER -> {
+                TileData d = new TileData(level);
+                NamespacedKey sellerType = new NamespacedKey(plugin, "seller_type");
+                d.setType(meta.getPersistentDataContainer().getOrDefault(sellerType, PersistentDataType.INTEGER, 0));
+                yield new AutoSellerTile(block.getLocation(), d);
+            }
+            case TileItemFactory.TYPE_AUTOMINER -> {
+                TileData d = new TileData(level);
+                NamespacedKey fortuneKey    = new NamespacedKey(plugin, "fortune");
+                NamespacedKey fortuneLvlKey = new NamespacedKey(plugin, "fortune_level");
+                d.setFortuneEnabled(meta.getPersistentDataContainer().getOrDefault(fortuneKey,    PersistentDataType.INTEGER, 0));
+                d.setFortuneLevel(meta.getPersistentDataContainer().getOrDefault(fortuneLvlKey,   PersistentDataType.INTEGER, 1));
+                yield new AutoMinerTile(block.getLocation(), d);
+            }
+            case TileItemFactory.TYPE_CATALYST -> new CatalystTile(block.getLocation());
+            case TileItemFactory.TYPE_HOPPER   -> new HopperTile(block.getLocation());
             default -> null;
         };
 
         if (tile != null) {
             tm.addTile(block.getLocation(), tile);
+            player.sendMessage("§a" + tileType + " placed and activated!");
         }
     }
 

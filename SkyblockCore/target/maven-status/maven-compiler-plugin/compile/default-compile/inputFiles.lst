@@ -13,6 +13,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/bow/Piercing.java
 /app/SkyblockCore/src/main/java/dev/skyblock/tiles/TileData.java
 /app/SkyblockCore/src/main/java/dev/skyblock/db/DatabaseManager.java
+/app/SkyblockCore/src/main/java/dev/skyblock/tiles/TileItemFactory.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Witch.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Inspirit.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Insurance.java
@@ -103,6 +104,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Replanter.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Chisel.java
 /app/SkyblockCore/src/main/java/dev/skyblock/item/ItemManager.java
+/app/SkyblockCore/src/main/java/dev/skyblock/command/TileGiveCommand.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Thunderbolt.java
 /app/SkyblockCore/src/main/java/dev/skyblock/db/GangRepository.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/DeepWounds.java

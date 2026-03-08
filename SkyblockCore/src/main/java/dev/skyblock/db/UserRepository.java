@@ -30,6 +30,7 @@ public class UserRepository {
                     user.setBlocks(rs.getInt("blocks"));
                     user.setKills(rs.getInt("kills"));
                     user.setDeaths(rs.getInt("deaths"));
+                    user.setKillstreak(rs.getInt("killstreak"));
                     user.setXp(rs.getInt("xp"));
                     user.setXpbank(rs.getInt("xpbank"));
                     user.setChips(rs.getInt("chips"));
@@ -37,17 +38,31 @@ public class UserRepository {
                 }
                 final User finalUser = user;
                 if (finalUser != null) {
+                    // Load gang
                     plugin.getDatabaseManager().queryAsync(
-                            "SELECT name FROM island WHERE name IN (SELECT name FROM info WHERE owner = ? OR helpers LIKE ? OR coowners LIKE ?)",
-                            rs2 -> {
-                                try {
-                                    if (rs2.next()) {
-                                        finalUser.setIsland(rs2.getString("name"));
-                                    }
-                                } catch (Exception e) { e.printStackTrace(); }
-                                Bukkit.getScheduler().runTask(SkyblockCore.getInstance(), () -> callback.accept(finalUser));
-                            },
-                            name, "%" + name + "%", "%" + name + "%"
+                        "SELECT gang FROM gang WHERE player = ?",
+                        rsGang -> {
+                            try {
+                                if (rsGang.next()) {
+                                    finalUser.setGang(rsGang.getString("gang"));
+                                }
+                            } catch (Exception e) { e.printStackTrace(); }
+
+                            // Load island
+                            plugin.getDatabaseManager().queryAsync(
+                                "SELECT name FROM island WHERE name IN (SELECT name FROM info WHERE owner = ? OR helpers LIKE ? OR coowners LIKE ?)",
+                                rsIsland -> {
+                                    try {
+                                        if (rsIsland.next()) {
+                                            finalUser.setIsland(rsIsland.getString("name"));
+                                        }
+                                    } catch (Exception e) { e.printStackTrace(); }
+                                    Bukkit.getScheduler().runTask(SkyblockCore.getInstance(), () -> callback.accept(finalUser));
+                                },
+                                name, "%" + name + "%", "%" + name + "%"
+                            );
+                        },
+                        name
                     );
                 } else {
                     Bukkit.getScheduler().runTask(SkyblockCore.getInstance(), () -> callback.accept(null));
@@ -60,17 +75,17 @@ public class UserRepository {
 
     public void saveUser(User user) {
         databaseManager.executeAsync(
-            "INSERT OR REPLACE INTO player (player, money, mobcoin, mana, blocks, kills, deaths, xp, xpbank, chips, bounty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT OR REPLACE INTO player (player, money, mobcoin, mana, blocks, kills, deaths, killstreak, xp, xpbank, chips, bounty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             user.getUsername(), user.getMoney(), user.getMobcoin(), user.getMana(), user.getBlocks(), user.getKills(), user.getDeaths(),
-            user.getXp(), user.getXpbank(), user.getChips(), user.getBounty()
+            user.getKillstreak(), user.getXp(), user.getXpbank(), user.getChips(), user.getBounty()
         );
     }
 
     public void saveUserSync(User user) {
         databaseManager.executeSync(
-            "INSERT OR REPLACE INTO player (player, money, mobcoin, mana, blocks, kills, deaths, xp, xpbank, chips, bounty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT OR REPLACE INTO player (player, money, mobcoin, mana, blocks, kills, deaths, killstreak, xp, xpbank, chips, bounty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             user.getUsername(), user.getMoney(), user.getMobcoin(), user.getMana(), user.getBlocks(),
-            user.getKills(), user.getDeaths(), user.getXp(), user.getXpbank(), user.getChips(), user.getBounty()
+            user.getKills(), user.getDeaths(), user.getKillstreak(), user.getXp(), user.getXpbank(), user.getChips(), user.getBounty()
         );
     }
 }

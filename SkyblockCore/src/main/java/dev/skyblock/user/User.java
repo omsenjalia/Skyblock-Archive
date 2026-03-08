@@ -6,7 +6,7 @@ public class User {
     private final String username;
     private final UUID uuid;
     private double money;
-    private int mobcoin, xp, xpbank, mana, blocks, kills, deaths, streak, chips, won, bounty, seltag;
+    private int mobcoin, xp, xpbank, mana, blocks, kills, deaths, killstreak, chips, won, bounty, seltag;
     private String island = "", gang = "", pet = "", petname = "";
     private List<String> tags = new ArrayList<>();
     private Map<String, Integer> kits = new HashMap<>();
@@ -39,6 +39,8 @@ public class User {
     public int getDeaths() { return deaths; }
     public void setDeaths(int d) { this.deaths = d; }
     public void addDeath() { this.deaths++; }
+    public int getKillstreak() { return killstreak; }
+    public void setKillstreak(int ks) { this.killstreak = ks; }
     public String getIsland() { return island; }
     public void setIsland(String i) { this.island = i; }
     public String getGang() { return gang; }
