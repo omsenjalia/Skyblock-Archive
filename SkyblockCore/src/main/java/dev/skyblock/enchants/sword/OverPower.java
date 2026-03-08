@@ -3,7 +3,7 @@ import dev.skyblock.enchants.BaseMeleeEnchant;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class OverPower extends BaseMeleeEnchant {
-    public static final int ID = 124;
+    public static final int ID = 159;
     public OverPower() { super(ID, "OverPower", 15); }
     @Override
     public boolean isApplicableTo(Player holder, int level) { return java.util.concurrent.ThreadLocalRandom.current().nextInt(1, 26) == 1; }

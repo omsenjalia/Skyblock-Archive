@@ -5,7 +5,7 @@ import dev.skyblock.user.User;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class SoulSnatcher extends BaseMeleeEnchant {
-    public static final int ID = 122;
+    public static final int ID = 195;
     public SoulSnatcher() { super(ID, "SoulSnatcher", 15); }
     @Override
     public boolean isApplicableTo(Player holder, int level) { return java.util.concurrent.ThreadLocalRandom.current().nextInt(1, 26) == 1; }
