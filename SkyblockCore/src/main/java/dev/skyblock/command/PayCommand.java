@@ -41,6 +41,8 @@ public class PayCommand implements CommandExecutor {
         targetUser.addMoney(amount);
         player.sendMessage("§aYou paid §e$" + amount + " §ato §e" + target.getName());
         target.sendMessage("§aYou received §e$" + amount + " §afrom §e" + player.getName());
+
+        plugin.getScoreboardManager().refreshAll();
         return true;
     }
 }

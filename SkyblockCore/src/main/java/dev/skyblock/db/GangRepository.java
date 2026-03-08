@@ -17,8 +17,22 @@ public class GangRepository {
         );
     }
 
+    public void saveGangSync(Gang gang) {
+        databaseManager.executeSync(
+            "INSERT OR REPLACE INTO creator (gang, leader, level, points, motd) VALUES (?, ?, ?, ?, ?)",
+            gang.getName(), gang.getLeader(), gang.getLevel(), gang.getPoints(), gang.getMotd()
+        );
+    }
+
     public void addGangMember(String player, String gang) {
         databaseManager.executeAsync(
+            "INSERT OR REPLACE INTO gang (player, gang, kills, deaths) VALUES (?, ?, ?, ?)",
+            player, gang, 0, 0
+        );
+    }
+
+    public void addGangMemberSync(String player, String gang) {
+        databaseManager.executeSync(
             "INSERT OR REPLACE INTO gang (player, gang, kills, deaths) VALUES (?, ?, ?, ?)",
             player, gang, 0, 0
         );

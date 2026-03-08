@@ -35,9 +35,23 @@ public class UserRepository {
                     user.setChips(rs.getInt("chips"));
                     user.setBounty(rs.getInt("bounty"));
                 }
-                final User result = user;
-                // sync back to main thread before touching Bukkit API
-                Bukkit.getScheduler().runTask(SkyblockCore.getInstance(), () -> callback.accept(result));
+                final User finalUser = user;
+                if (finalUser != null) {
+                    plugin.getDatabaseManager().queryAsync(
+                            "SELECT name FROM island WHERE name IN (SELECT name FROM info WHERE owner = ? OR helpers LIKE ? OR coowners LIKE ?)",
+                            rs2 -> {
+                                try {
+                                    if (rs2.next()) {
+                                        finalUser.setIsland(rs2.getString("name"));
+                                    }
+                                } catch (Exception e) { e.printStackTrace(); }
+                                Bukkit.getScheduler().runTask(SkyblockCore.getInstance(), () -> callback.accept(finalUser));
+                            },
+                            name, "%" + name + "%", "%" + name + "%"
+                    );
+                } else {
+                    Bukkit.getScheduler().runTask(SkyblockCore.getInstance(), () -> callback.accept(null));
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -49,6 +63,14 @@ public class UserRepository {
             "INSERT OR REPLACE INTO player (player, money, mobcoin, mana, blocks, kills, deaths, xp, xpbank, chips, bounty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             user.getUsername(), user.getMoney(), user.getMobcoin(), user.getMana(), user.getBlocks(), user.getKills(), user.getDeaths(),
             user.getXp(), user.getXpbank(), user.getChips(), user.getBounty()
+        );
+    }
+
+    public void saveUserSync(User user) {
+        databaseManager.executeSync(
+            "INSERT OR REPLACE INTO player (player, money, mobcoin, mana, blocks, kills, deaths, xp, xpbank, chips, bounty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            user.getUsername(), user.getMoney(), user.getMobcoin(), user.getMana(), user.getBlocks(),
+            user.getKills(), user.getDeaths(), user.getXp(), user.getXpbank(), user.getChips(), user.getBounty()
         );
     }
 }

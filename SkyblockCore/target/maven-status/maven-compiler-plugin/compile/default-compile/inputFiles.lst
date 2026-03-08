@@ -37,6 +37,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/IceAspect.java
 /app/SkyblockCore/src/main/java/dev/skyblock/tiles/TileManager.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Poison.java
+/app/SkyblockCore/src/main/java/dev/skyblock/island/VoidChunkGenerator.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/bow/Shuffle.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/DisarmorProtection.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Enlighten.java

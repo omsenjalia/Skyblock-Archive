@@ -62,7 +62,7 @@ public class DatabaseManager {
         executeSync("CREATE TABLE IF NOT EXISTS info8pref (name TEXT PRIMARY KEY, cobblestone INT, coal INT, copper INT, iron INT, lapis INT, gold INT, diamond INT, emerald INT, quartz INT, netherite INT, deep_coal INT, deep_copper INT, deep_iron INT, deep_lapis INT, deep_gold INT, deep_diamond INT, deep_emerald INT, deep_quartz INT, deep_netherite INT)");
         executeSync("CREATE TABLE IF NOT EXISTS lock (name TEXT PRIMARY KEY, locked TEXT)");
         executeSync("CREATE TABLE IF NOT EXISTS level (name TEXT PRIMARY KEY, points INT, level INT)");
-        executeSync("CREATE TABLE IF NOT EXISTS home (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, x INT, y INT, z INT, home TEXT)");
+        executeSync("CREATE TABLE IF NOT EXISTS home (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, x REAL, y REAL, z REAL, home TEXT, world TEXT)");
         executeSync("CREATE TABLE IF NOT EXISTS helper (player TEXT PRIMARY KEY, count INT)");
         executeSync("CREATE TABLE IF NOT EXISTS player (player TEXT PRIMARY KEY, money REAL, mobcoin INT, xp INT, xpbank INT, mana INT, blocks INT, kills INT, deaths INT, killstreak INT, chips INT, won INT, bounty INT, seltag INT, tags TEXT, wm TEXT, homes TEXT, pref TEXT, extradata TEXT, quests TEXT)");
         executeSync("CREATE TABLE IF NOT EXISTS kit (player TEXT PRIMARY KEY, achilles INT, theo INT, cosmo INT, arcadia INT, artemis INT, calisto INT)");

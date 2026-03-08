@@ -31,7 +31,7 @@ public class GangManager {
 
     public void shutdown() {
         for (Gang gang : gangs.values()) {
-            repository.saveGang(gang);
+            repository.saveGangSync(gang);
         }
         gangs.clear();
     }

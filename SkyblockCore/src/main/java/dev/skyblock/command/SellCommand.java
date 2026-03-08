@@ -33,6 +33,8 @@ public class SellCommand implements CommandExecutor {
         user.addMoney(price);
         player.getInventory().setItemInMainHand(null);
         player.sendMessage("§aYou sold items for §e$" + price);
+
+        plugin.getScoreboardManager().refreshAll();
         return true;
     }
 }

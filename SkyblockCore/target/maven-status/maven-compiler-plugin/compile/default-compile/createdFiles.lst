@@ -19,7 +19,6 @@ dev/skyblock/command/PayCommand.class
 dev/skyblock/enchants/armor/Enlighten.class
 dev/skyblock/pets/PetManager.class
 dev/skyblock/command/BalCommand.class
-dev/skyblock/island/IslandManager$VoidGenerator.class
 dev/skyblock/enchants/BaseTouchEnchant.class
 dev/skyblock/scoreboard/ScoreboardManager.class
 dev/skyblock/events/MainEventListener$1.class
@@ -105,6 +104,7 @@ dev/skyblock/enchants/armor/Deflate.class
 dev/skyblock/enchants/sword/Charge.class
 dev/skyblock/db/DatabaseManager.class
 dev/skyblock/enchants/block/Woodcutter.class
+dev/skyblock/island/VoidChunkGenerator.class
 dev/skyblock/tiles/CatalystTile.class
 dev/skyblock/enchants/block/Karma.class
 dev/skyblock/enchants/sword/Backstabber.class

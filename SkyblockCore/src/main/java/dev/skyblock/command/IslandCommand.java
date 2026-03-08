@@ -3,11 +3,14 @@ package dev.skyblock.command;
 import dev.skyblock.SkyblockCore;
 import dev.skyblock.island.Island;
 import dev.skyblock.user.User;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 public class IslandCommand implements CommandExecutor {
     private final SkyblockCore plugin;
@@ -47,14 +50,30 @@ public class IslandCommand implements CommandExecutor {
                 user.setIsland(name);
                 player.sendMessage("§aIsland §e" + name + " §acreated!");
                 break;
-            case "go":
+            case "go": {
                 if (user.getIsland().isEmpty()) {
                     player.sendMessage("§cYou don't have an island!");
                     return true;
                 }
-                // Teleport logic
-                player.sendMessage("§aTeleporting to your island...");
+                Optional<Island> opt = plugin.getIslandManager().getIslandByName(user.getIsland());
+                if (opt.isEmpty()) {
+                    player.sendMessage("§cYour island could not be found. Try relogging.");
+                    return true;
+                }
+                Island isl = opt.get();
+                String worldName = isl.getId();
+                org.bukkit.World world = org.bukkit.Bukkit.getWorld(worldName);
+                if (world == null) {
+                    org.bukkit.WorldCreator creator = new org.bukkit.WorldCreator(worldName);
+                    creator.generator(new dev.skyblock.island.VoidChunkGenerator());
+                    world = creator.createWorld();
+                }
+                Location home = isl.getHome("default", world);
+                if (home == null) home = world.getSpawnLocation();
+                player.teleport(home);
+                player.sendMessage("§aTeleported to your island!");
                 break;
+            }
             default:
                 player.sendMessage("§cUnknown subcommand.");
                 break;
