@@ -37,9 +37,11 @@ public class User {
     public int getKills() { return kills; }
     public void setKills(int k) { this.kills = k; }
     public void addKill() { this.kills++; }
+    public void addKills(int n) { this.kills += n; }
     public int getDeaths() { return deaths; }
     public void setDeaths(int d) { this.deaths = d; }
     public void addDeath() { this.deaths++; }
+    public void addDeaths(int n) { this.deaths += n; }
     public int getKillstreak() { return killstreak; }
     public void setKillstreak(int ks) { this.killstreak = ks; }
     public String getIsland() { return island; }

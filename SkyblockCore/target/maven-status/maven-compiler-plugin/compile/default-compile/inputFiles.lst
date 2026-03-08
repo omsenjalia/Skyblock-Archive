@@ -37,6 +37,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Barter.java
 /app/SkyblockCore/src/main/java/dev/skyblock/tiles/OreGenTile.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Shielded.java
+/app/SkyblockCore/src/main/java/dev/skyblock/util/Format.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/IceAspect.java
 /app/SkyblockCore/src/main/java/dev/skyblock/tiles/TileManager.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Poison.java

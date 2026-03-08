@@ -75,6 +75,11 @@ public class AutoSellerTile extends BaseTile {
                 user.addXp((int) earnings);
             }
 
+            String type = data.getType() == TYPE_MONEY ? "$" : "XP";
+            receiver.sendActionBar(net.kyori.adventure.text.Component.text(
+                "§l§6>> §eAuto Sold for §6" + dev.skyblock.util.Format.formatMoney(earnings) + type + " §6<<"
+            ));
+
             // Remove sold items
             item.setAmount(item.getAmount() - sellCount);
             if (item.getAmount() <= 0) {

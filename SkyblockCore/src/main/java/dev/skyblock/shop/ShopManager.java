@@ -2,6 +2,7 @@ package dev.skyblock.shop;
 
 import dev.skyblock.SkyblockCore;
 import dev.skyblock.user.User;
+import dev.skyblock.util.Format;
 import dev.skyblock.util.SellPrices;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -26,7 +27,7 @@ public class ShopManager {
         double money = (user != null) ? user.getMoney() : 0;
 
         ShopHolder holder = new ShopHolder(ShopHolder.ShopMenu.MAIN);
-        Inventory inv = Bukkit.createInventory(holder, 54, Component.text("§b§lShop §7- §6" + String.format("%.1f", money) + "$"));
+        Inventory inv = Bukkit.createInventory(holder, 54, Component.text("§b§lShop §7- §6" + Format.formatMoney(money) + "$"));
         holder.setInventory(inv);
 
         fillBorder(inv);
@@ -265,7 +266,7 @@ public class ShopManager {
 
         double cost = SellPrices.getBuyPrice(material) * quantity;
         if (user.getMoney() < cost) {
-            player.sendMessage("§cYou need §6" + String.format("%.1f", cost) + "$ §cto buy this!");
+            player.sendMessage("§cYou need §6" + Format.formatMoney(cost) + "$ §cto buy this!");
             return false;
         }
 
@@ -273,7 +274,7 @@ public class ShopManager {
         ItemStack item = new ItemStack(material, quantity);
         player.getInventory().addItem(item);
         player.sendActionBar(Component.text(
-                "§aBought §f" + quantity + "x " + material.name().toLowerCase().replace("_", " ") + " §afor §6" + String.format("%.1f", cost) + "$"
+                "§aBought §f" + quantity + "x " + material.name().toLowerCase().replace("_", " ") + " §afor §6" + Format.formatMoney(cost) + "$"
         ));
         return true;
     }

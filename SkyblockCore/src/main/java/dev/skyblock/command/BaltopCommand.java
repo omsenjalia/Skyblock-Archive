@@ -1,5 +1,6 @@
 package dev.skyblock.command;
 import dev.skyblock.SkyblockCore;
+import dev.skyblock.util.Format;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,7 +20,7 @@ public class BaltopCommand implements CommandExecutor {
             try {
                 int rank = 1;
                 while (rs.next()) {
-                    lines.add("§e" + rank + ". §7" + rs.getString("player") + ": §a$" + rs.getDouble("money"));
+                    lines.add("§e" + rank + ". §7" + rs.getString("player") + ": §a$" + Format.formatMoney(rs.getDouble("money")));
                     rank++;
                 }
             } catch (SQLException e) { e.printStackTrace(); }

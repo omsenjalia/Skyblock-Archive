@@ -1,6 +1,7 @@
 package dev.skyblock.command;
 import dev.skyblock.SkyblockCore;
 import dev.skyblock.user.User;
+import dev.skyblock.util.Format;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,12 +16,12 @@ public class BalCommand implements CommandExecutor {
         if (!(sender instanceof Player player)) return true;
         User user = plugin.getUserManager().getOnlineUser(player.getUniqueId());
         if (args.length == 0) {
-            player.sendMessage("§aYour balance: §e$" + user.getMoney());
+            player.sendMessage("§aYour balance: §e$" + Format.formatMoney(user.getMoney()));
         } else {
             Player target = Bukkit.getPlayer(args[0]);
             if (target != null) {
                 User targetUser = plugin.getUserManager().getOnlineUser(target.getUniqueId());
-                player.sendMessage("§e" + target.getName() + "'s §abalance: §e$" + targetUser.getMoney());
+                player.sendMessage("§e" + target.getName() + "'s §abalance: §e$" + Format.formatMoney(targetUser.getMoney()));
             } else {
                 player.sendMessage("§cPlayer not found.");
             }

@@ -3,6 +3,7 @@ package dev.skyblock.command;
 import dev.skyblock.SkyblockCore;
 import dev.skyblock.island.Island;
 import dev.skyblock.user.User;
+import dev.skyblock.util.Format;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class IslandCommand implements CommandExecutor {
@@ -35,6 +37,8 @@ public class IslandCommand implements CommandExecutor {
         if (args.length == 0) {
             player.sendMessage("§e/is create <name> §7- Create an island");
             player.sendMessage("§e/is go §7- Teleport to your island");
+            player.sendMessage("§e/is top §7- Show top islands");
+            player.sendMessage("§e/is help §7- Show help");
             return true;
         }
 
@@ -86,9 +90,12 @@ public class IslandCommand implements CommandExecutor {
                 player.sendMessage("§fOwner: §e" + isl.getReceiver());
                 player.sendMessage("§fLevel: §e" + isl.getLevel());
                 player.sendMessage("§fPoints: §e" + isl.getPoints());
-                player.sendMessage("§fBalance: §a$" + (int) isl.getMoney());
+                player.sendMessage("§fBalance: §a$" + Format.formatMoney(isl.getMoney()));
                 player.sendMessage("§fRadius: §e" + isl.getRadius());
-                player.sendMessage("§fMembers: §e" + String.join(", ", isl.getCoowners()));
+                List<String> members = new ArrayList<>();
+                members.addAll(isl.getCoowners());
+                members.addAll(isl.getHelpers());
+                player.sendMessage("§fMembers: §e" + (members.isEmpty() ? "None" : String.join(", ", members)));
                 player.sendMessage("§fLocked: §e" + isl.getLocked());
                 break;
             }
@@ -197,6 +204,30 @@ public class IslandCommand implements CommandExecutor {
                 user.setIsland("");
                 plugin.getIslandManager().deleteIsland(isl);
                 player.sendMessage("§aYour island has been deleted.");
+                break;
+            }
+            case "top": {
+                plugin.getDatabaseManager().queryAsync(
+                    "SELECT l.name, l.level, l.points, i.owner FROM level l JOIN info i ON l.name = i.name ORDER BY l.points DESC LIMIT 10",
+                    rs -> {
+                        List<String> lines = new ArrayList<>();
+                        lines.add("§6§l--- Island Top ---");
+                        try {
+                            int rank = 1;
+                            while (rs.next()) {
+                                lines.add("§e" + rank + ". §f" + rs.getString("name") +
+                                          " §7(Owner: " + rs.getString("owner") + ")" +
+                                          " §aLevel: " + rs.getInt("level") +
+                                          " §bPoints: " + rs.getInt("points"));
+                                rank++;
+                            }
+                            if (rank == 1) lines.add("§7No islands found.");
+                        } catch (Exception e) { e.printStackTrace(); }
+                        Bukkit.getScheduler().runTask(plugin, () -> {
+                            for (String line : lines) player.sendMessage(line);
+                        });
+                    }
+                );
                 break;
             }
             case "setbiome": {

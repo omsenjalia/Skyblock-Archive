@@ -3,6 +3,7 @@ package dev.skyblock.scoreboard;
 import dev.skyblock.SkyblockCore;
 import dev.skyblock.island.Island;
 import dev.skyblock.user.User;
+import dev.skyblock.util.Format;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
@@ -35,10 +36,10 @@ public class ScoreboardManager {
         // Always shown
         obj.getScore("§3 ✪ §aIGN: §f" + player.getName()).setScore(line--);
         obj.getScore("§3 ✪ §ePlayers: §f" + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers()).setScore(line--);
-        obj.getScore("§3 ✪ §6Money: §f" + shortenNumber(user.getMoney()) + "$").setScore(line--);
-        obj.getScore("§3 ✪ §dMana: §f" + shortenNumber(user.getMana())).setScore(line--);
-        obj.getScore("§3 ✪ §eMobCoin: §f" + shortenNumber(user.getMobcoin())).setScore(line--);
-        obj.getScore("§3 ✪ §cXP: §f" + shortenNumber(user.getXp())).setScore(line--);
+        obj.getScore("§3 ✪ §6Money: §f" + Format.formatMoney(user.getMoney()) + "$").setScore(line--);
+        obj.getScore("§3 ✪ §dMana: §f" + Format.formatMoney(user.getMana())).setScore(line--);
+        obj.getScore("§3 ✪ §eMobCoin: §f" + Format.formatMoney(user.getMobcoin())).setScore(line--);
+        obj.getScore("§3 ✪ §cXP: §f" + Format.formatMoney(user.getXp())).setScore(line--);
 
         if (islandOpt.isEmpty()) {
             // Spawn/hub mode
@@ -74,7 +75,7 @@ public class ScoreboardManager {
             obj.getScore("§d † Island Stats †").setScore(line--);
             obj.getScore("§3 》 §bIsland: §f" + island.getName()).setScore(line--);
             obj.getScore("§3 》 §6Owner: §f" + island.getReceiver()).setScore(line--);
-            obj.getScore("§3 》 §5Bank: §f" + shortenNumber(island.getMoney()) + "$").setScore(line--);
+            obj.getScore("§3 》 §5Bank: §f" + Format.formatMoney(island.getMoney()) + "$").setScore(line--);
             obj.getScore("§3 》 §eLevel: §f" + island.getLevel()).setScore(line--);
             obj.getScore("§3 》 §2Points: §f" + island.getPoints()).setScore(line--);
             String handItem = player.getInventory().getItemInMainHand().getType().name().toLowerCase().replace("_", " ");
@@ -94,14 +95,4 @@ public class ScoreboardManager {
         }
     }
 
-    private String shortenNumber(double number) {
-        if (number >= 1_000_000_000) return String.format("%.1fB", number / 1_000_000_000);
-        if (number >= 1_000_000)     return String.format("%.1fM", number / 1_000_000);
-        if (number >= 1_000)         return String.format("%.1fK", number / 1_000);
-        return String.valueOf((long) number);
-    }
-
-    private String shortenNumber(int number) {
-        return shortenNumber((double) number);
-    }
 }
