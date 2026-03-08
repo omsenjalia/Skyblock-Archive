@@ -1,0 +1,9 @@
+# SkyblockCore Configuration
+
+database:
+  type: sqlite # sqlite or mysql
+  host: localhost
+  port: 3306
+  database: skyblock
+  username: root
+  password: ''
