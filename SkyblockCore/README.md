@@ -2,7 +2,7 @@
 
 SkyblockCore is a high-performance, feature-rich Skyblock plugin for Paper/Spigot 1.21.x, rewritten from a legacy PocketMine-MP (PHP) source.
 
-## Conversion Progress: ~25%
+## Conversion Progress: ~30%
 
 This project is a manual conversion of over 500 PHP files to a modern Java environment.
 
@@ -16,9 +16,9 @@ This project is a manual conversion of over 500 PHP files to a modern Java envir
 | **Custom Tiles** | ✅ Complete | PDC-Tagged item system. AutoSeller, AutoMiner, Ore Gens, Catalyst, Hopper. |
 | **Custom Enchants** | ✅ Complete | Lore & PDC metadata system. Support for armor, swords, bows, and tools. |
 | **Scoreboard** | ✅ Complete | Dual-mode display (Spawn vs Island), LuckPerms integration, real-time updates. |
+| **Shop/Economy** | ✅ Complete | Full Chest GUI navigation, buying system, price mapping. |
 | **Gangs** | 🟡 Partial | Repository and basic commands implemented. |
 | **Pets** | 🟡 Partial | Manager and basic pet persistence implemented. |
-| **Shop/Economy** | 🟡 Partial | Basic command & prices; needs full GUI conversion. |
 | **Warps & Homes** | ✅ Complete | Persistence in database, multiple homes support. |
 
 ### Commands
@@ -40,6 +40,7 @@ This project is a manual conversion of over 500 PHP files to a modern Java envir
 | `/baltop` | `/baltop` | Top balances |
 | `/pay` | `/pay <player> <amount>` | Send money |
 | `/sell` | `/sell [hand/all]` | Sell items |
+| `/shop` | `/shop` | Open the Chest GUI shop |
 | `/gang` | `/gang <subcommand>` | Gang management |
 | `/tilegive` | `/tilegive <type> [lvl] [ore]` | Give custom tile items (Admin only) |
 
@@ -50,7 +51,7 @@ Tiles must be created via `TileItemFactory` (or `/tilegive`) to function. Vanill
 | Block Material | Tile Type | Description |
 | :--- | :--- | :--- |
 | **Barrel** | AutoSeller | Automatically sells chest contents. |
-| **Slime Block** | AutoMiner | Automatically mines ores in radius. |
+| **Slime Block** | AutoMiner | Automatically mines ores in radius (at y-1). |
 | **Purple Glazed Terracotta** | Catalyst | Boosts island ore generation. |
 | **Hopper (Level > 1)** | HopperTile | Enhanced hopper functionality. |
 | **Cyan Glazed Terracotta** | Diamond OreGen | Generates Diamond Ore above it. |
