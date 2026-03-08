@@ -22,6 +22,7 @@ dev/skyblock/command/BalCommand.class
 dev/skyblock/island/IslandManager$VoidGenerator.class
 dev/skyblock/enchants/BaseTouchEnchant.class
 dev/skyblock/scoreboard/ScoreboardManager.class
+dev/skyblock/events/MainEventListener$1.class
 dev/skyblock/enchants/armor/Glowing.class
 dev/skyblock/gang/Gang.class
 dev/skyblock/tiles/TileManager$1.class
@@ -39,6 +40,7 @@ dev/skyblock/command/HomeCommand.class
 dev/skyblock/island/SchematicPlacer.class
 dev/skyblock/enchants/sword/Witch.class
 dev/skyblock/db/GangRepository.class
+dev/skyblock/tiles/AutoMinerTile.class
 dev/skyblock/enchants/EnchantManager.class
 dev/skyblock/enchants/block/Tinkerer.class
 dev/skyblock/enchants/armor/Berserker.class
@@ -46,6 +48,8 @@ dev/skyblock/events/MainEventListener.class
 dev/skyblock/enchants/sword/Thunderbolt.class
 dev/skyblock/enchants/armor/LifeShield.class
 dev/skyblock/enchants/sword/SoulSnatcher.class
+dev/skyblock/tiles/HopperTile.class
+dev/skyblock/tiles/AutoSellerTile.class
 dev/skyblock/enchants/block/Prosperity.class
 dev/skyblock/enchants/sword/Wither.class
 dev/skyblock/SkyblockCore.class
@@ -60,6 +64,7 @@ dev/skyblock/command/SellCommand.class
 dev/skyblock/enchants/sword/Gooey.class
 dev/skyblock/enchants/sword/DeepWounds.class
 dev/skyblock/enchants/sword/Serpent.class
+dev/skyblock/tiles/TileData.class
 dev/skyblock/enchants/armor/DisarmorProtection.class
 dev/skyblock/enchants/bow/Healing.class
 dev/skyblock/enchants/sword/IceAspect.class
@@ -100,6 +105,7 @@ dev/skyblock/enchants/armor/Deflate.class
 dev/skyblock/enchants/sword/Charge.class
 dev/skyblock/db/DatabaseManager.class
 dev/skyblock/enchants/block/Woodcutter.class
+dev/skyblock/tiles/CatalystTile.class
 dev/skyblock/enchants/block/Karma.class
 dev/skyblock/enchants/sword/Backstabber.class
 dev/skyblock/enchants/block/Barter.class
@@ -117,3 +123,4 @@ dev/skyblock/enchants/sword/Smasher.class
 dev/skyblock/enchants/block/Quickening.class
 dev/skyblock/enchants/sword/Chisel.class
 dev/skyblock/enchants/armor/Inspirit.class
+dev/skyblock/util/SellPrices.class

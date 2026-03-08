@@ -51,6 +51,10 @@ public class IslandManager {
         return Optional.ofNullable(islandsByWorld.get(worldName));
     }
 
+    public Optional<Island> getOnlineIslandByWorld(String worldName) {
+        return Optional.ofNullable(islandsByWorld.get(worldName));
+    }
+
     public void loadAllIslands() {
         plugin.getDatabaseManager().queryAsync("SELECT name, world FROM island", rs -> {
             try {

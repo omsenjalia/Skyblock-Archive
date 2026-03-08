@@ -4,6 +4,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Island {
     private final String id;
     private String name;
@@ -76,6 +78,20 @@ public class Island {
     public void setLocked(String l) { this.locked = l; }
     public Map<String, double[]> getHomes() { return homes; }
     public Map<String, Integer> getOredata() { return oredata; }
+    public Map<String, Integer> getOredatapref() { return oredatapref; }
+
+    public Player getRandomOnlineCoOwner() {
+        List<Player> onlineCoOwners = new ArrayList<>();
+        for (String coowner : coowners) {
+            Player p = Bukkit.getPlayerExact(coowner);
+            if (p != null && p.isOnline()) {
+                onlineCoOwners.add(p);
+            }
+        }
+        if (onlineCoOwners.isEmpty()) return null;
+        return onlineCoOwners.get(ThreadLocalRandom.current().nextInt(onlineCoOwners.size()));
+    }
+
     public boolean isOwner(String player) { return owner.equalsIgnoreCase(player); }
     public boolean isCoOwner(String player) { return coowners.contains(player.toLowerCase()); }
     public boolean isMember(String player) { return isOwner(player) || helpers.contains(player.toLowerCase()) || coowners.contains(player.toLowerCase()) || admins.contains(player.toLowerCase()); }
