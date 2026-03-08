@@ -28,8 +28,6 @@ public abstract class BaseEnchant {
     public String getName() { return name; }
     public int getMaxLevel() { return maxLevel; }
 
-    public abstract boolean isApplicableTo(ItemStack item);
-
     public int getLevel(ItemStack item) {
         if (item == null || !item.hasItemMeta()) return 0;
         PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
