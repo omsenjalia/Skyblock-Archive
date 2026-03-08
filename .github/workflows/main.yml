@@ -23,9 +23,9 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -f SkyblockCore/pom.xml
 
-      - name: Upload JAR
+      - name: Upload shaded JAR
         uses: actions/upload-artifact@v4
         with:
           name: SkyblockCore
-          path: SkyblockCore/target/SkyblockCore-*.jar
+          path: SkyblockCore/target/SkyblockCore-*-shaded.jar
           if-no-files-found: error
