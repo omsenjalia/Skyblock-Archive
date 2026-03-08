@@ -32,3 +32,6 @@ commands:
     description: Teleport home
   sethome:
     description: Set home
+  spawn:
+    description: Teleport to spawn
+    usage: /spawn

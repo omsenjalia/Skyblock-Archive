@@ -54,6 +54,7 @@ dev/skyblock/enchants/sword/Wither.class
 dev/skyblock/SkyblockCore.class
 dev/skyblock/enchants/armor/Protector.class
 dev/skyblock/enchants/BaseBlockEnchant.class
+dev/skyblock/command/SpawnCommand.class
 dev/skyblock/command/GangCommand.class
 dev/skyblock/enchants/armor/Dispatch.class
 dev/skyblock/enchants/BaseMeleeEnchant.class
@@ -96,6 +97,7 @@ dev/skyblock/enchants/touch/Demolisher.class
 dev/skyblock/enchants/bow/Shuffle.class
 dev/skyblock/command/EnchantCommand.class
 dev/skyblock/db/IslandRepository.class
+dev/skyblock/tiles/OreGenTile.class
 dev/skyblock/enchants/block/Lucky.class
 dev/skyblock/command/IslandCommand.class
 dev/skyblock/enchants/block/Expansioner.class
