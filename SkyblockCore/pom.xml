@@ -92,8 +92,6 @@
                                     <shadedPattern>dev.skyblock.libs.hikari</shadedPattern>
                                 </relocation>
                                 <relocation>
-                                    <pattern>org.sqlite</pattern>
-                                    <shadedPattern>dev.skyblock.libs.sqlite</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
