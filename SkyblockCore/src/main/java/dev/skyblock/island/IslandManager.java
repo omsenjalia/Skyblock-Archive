@@ -293,6 +293,47 @@ public class IslandManager {
         );
     }
 
+    public void saveIsland(Island island) {
+        repository.saveIsland(island);
+    }
+
+    public void deleteIsland(Island island) {
+        String worldName = island.getId();
+        String islandName = island.getName();
+
+        // Unload world
+        World world = Bukkit.getWorld(worldName);
+        if (world != null) {
+            // Teleport any remaining players out
+            for (Player p : world.getPlayers()) {
+                World spawnWorld = Bukkit.getWorld("world");
+                if (spawnWorld != null) p.teleport(spawnWorld.getSpawnLocation());
+            }
+            Bukkit.unloadWorld(world, false); // false = don't save
+        }
+
+        // Delete world folder
+        File worldFolder = new File(Bukkit.getWorldContainer(), worldName);
+        deleteFolder(worldFolder);
+
+        // Remove from DB
+        repository.deleteIsland(islandName);
+
+        // Remove from cache
+        islandsByWorld.remove(worldName);
+        islandNameToWorld.remove(islandName.toLowerCase());
+    }
+
+    private void deleteFolder(File folder) {
+        if (!folder.exists()) return;
+        File[] files = folder.listFiles();
+        if (files != null) for (File f : files) {
+            if (f.isDirectory()) deleteFolder(f);
+            else f.delete();
+        }
+        folder.delete();
+    }
+
     public void shutdown() {
         for (Island island : islandsByWorld.values()) {
             repository.saveIslandSync(island);

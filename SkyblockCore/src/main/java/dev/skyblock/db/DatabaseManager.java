@@ -76,6 +76,32 @@ public class DatabaseManager {
         executeSync("CREATE TABLE IF NOT EXISTS votes (server TEXT PRIMARY KEY, votes INT)");
         executeSync("CREATE TABLE IF NOT EXISTS timings (player TEXT PRIMARY KEY, seconds INT)");
         executeSync("CREATE TABLE IF NOT EXISTS pets (player TEXT PRIMARY KEY, name TEXT, unlocked TEXT, current TEXT)");
+
+        safeAddColumn("home", "world", "TEXT");
+        safeAddColumn("info", "spawner", "INT DEFAULT 0");
+        safeAddColumn("info", "oregen", "INT DEFAULT 0");
+        safeAddColumn("info", "autominer", "INT DEFAULT 0");
+        safeAddColumn("info", "autoseller", "INT DEFAULT 0");
+        safeAddColumn("info", "hopper", "INT DEFAULT 0");
+        safeAddColumn("info", "farm", "INT DEFAULT 0");
+        safeAddColumn("info", "vlimit", "INT DEFAULT 0");
+        safeAddColumn("info2", "mining", "INT DEFAULT 0");
+        safeAddColumn("info2", "farming", "INT DEFAULT 0");
+    }
+
+    private void safeAddColumn(String table, String column, String type) {
+        try (Connection conn = dataSource.getConnection();
+             var rs = conn.getMetaData().getColumns(null, null, table, column)) {
+            if (!rs.next()) {
+                try (PreparedStatement stmt = conn.prepareStatement(
+                        "ALTER TABLE " + table + " ADD COLUMN " + column + " " + type)) {
+                    stmt.execute();
+                    plugin.getLogger().info("Migrated: added column " + column + " to " + table);
+                }
+            }
+        } catch (SQLException e) {
+            plugin.getLogger().warning("Migration failed for " + table + "." + column + ": " + e.getMessage());
+        }
     }
 
     public void executeSync(String sql, Object... params) {

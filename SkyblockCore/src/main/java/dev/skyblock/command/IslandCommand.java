@@ -3,13 +3,16 @@ package dev.skyblock.command;
 import dev.skyblock.SkyblockCore;
 import dev.skyblock.island.Island;
 import dev.skyblock.user.User;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class IslandCommand implements CommandExecutor {
@@ -72,6 +75,156 @@ public class IslandCommand implements CommandExecutor {
                 if (home == null) home = world.getSpawnLocation();
                 player.teleport(home);
                 player.sendMessage("§aTeleported to your island!");
+                break;
+            }
+            case "info": {
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) { player.sendMessage("§cIsland not found."); return true; }
+                player.sendMessage("§3§l--- Island Info ---");
+                player.sendMessage("§fName: §e" + isl.getName());
+                player.sendMessage("§fOwner: §e" + isl.getReceiver());
+                player.sendMessage("§fLevel: §e" + isl.getLevel());
+                player.sendMessage("§fPoints: §e" + isl.getPoints());
+                player.sendMessage("§fBalance: §a$" + (int) isl.getMoney());
+                player.sendMessage("§fRadius: §e" + isl.getRadius());
+                player.sendMessage("§fMembers: §e" + String.join(", ", isl.getCoowners()));
+                player.sendMessage("§fLocked: §e" + isl.getLocked());
+                break;
+            }
+            case "lock": {
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                isl.setLocked("true");
+                plugin.getIslandManager().saveIsland(isl);
+                player.sendMessage("§aIsland locked.");
+                break;
+            }
+            case "unlock": {
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                isl.setLocked("false");
+                plugin.getIslandManager().saveIsland(isl);
+                player.sendMessage("§aIsland unlocked.");
+                break;
+            }
+            case "invite": {
+                if (args.length < 2) { player.sendMessage("§cUsage: /is invite <player>"); return true; }
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                if (!isl.getReceiver().equalsIgnoreCase(player.getName())) { player.sendMessage("§cOnly the island owner can invite players."); return true; }
+                Player target = Bukkit.getPlayerExact(args[1]);
+                if (target == null) { player.sendMessage("§cPlayer not found or not online."); return true; }
+                User targetUser = plugin.getUserManager().getOnlineUser(target.getUniqueId());
+                if (targetUser == null) return true;
+                if (!targetUser.getIsland().isEmpty()) { player.sendMessage("§cThat player already has an island."); return true; }
+                isl.getCoowners().add(target.getName().toLowerCase());
+                targetUser.setIsland(isl.getName());
+                plugin.getIslandManager().saveIsland(isl);
+                target.sendMessage("§aYou have been invited to §e" + player.getName() + "§a's island!");
+                player.sendMessage("§a" + target.getName() + " has been added to your island.");
+                break;
+            }
+            case "kick": {
+                if (args.length < 2) { player.sendMessage("§cUsage: /is kick <player>"); return true; }
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                if (!isl.getReceiver().equalsIgnoreCase(player.getName())) { player.sendMessage("§cOnly the island owner can kick players."); return true; }
+                String targetName = args[1].toLowerCase();
+                if (!isl.getCoowners().contains(targetName)) { player.sendMessage("§cThat player is not a member of your island."); return true; }
+                isl.getCoowners().remove(targetName);
+                plugin.getIslandManager().saveIsland(isl);
+                // Clear their island reference if online
+                Player target = Bukkit.getPlayerExact(args[1]);
+                if (target != null) {
+                    User targetUser = plugin.getUserManager().getOnlineUser(target.getUniqueId());
+                    if (targetUser != null) targetUser.setIsland("");
+                    target.sendMessage("§cYou have been kicked from §e" + player.getName() + "§c's island.");
+                }
+                player.sendMessage("§a" + args[1] + " has been kicked from your island.");
+                break;
+            }
+            case "members": {
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                player.sendMessage("§3§l--- Island Members ---");
+                player.sendMessage("§fOwner: §e" + isl.getReceiver());
+                if (isl.getCoowners().isEmpty()) {
+                    player.sendMessage("§fMembers: §7None");
+                } else {
+                    player.sendMessage("§fMembers: §e" + String.join(", ", isl.getCoowners()));
+                }
+                break;
+            }
+            case "sethome": {
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                if (!isl.isAnOwner(player.getName())) { player.sendMessage("§cOnly island owners can set the home."); return true; }
+                isl.setHome("default", player.getLocation());
+                plugin.getIslandManager().saveIsland(isl);
+                player.sendMessage("§aIsland home set!");
+                break;
+            }
+            case "delete": {
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                if (!isl.getReceiver().equalsIgnoreCase(player.getName())) { player.sendMessage("§cOnly the island owner can delete the island."); return true; }
+
+                // Kick all members
+                for (String memberName : new ArrayList<>(isl.getCoowners())) {
+                    Player member = Bukkit.getPlayerExact(memberName);
+                    if (member != null) {
+                        User memberUser = plugin.getUserManager().getOnlineUser(member.getUniqueId());
+                        if (memberUser != null) memberUser.setIsland("");
+                        member.sendMessage("§cThe island you were a member of has been deleted.");
+                        // Teleport to spawn
+                        World spawnWorld = Bukkit.getWorld("world");
+                        if (spawnWorld != null) member.teleport(spawnWorld.getSpawnLocation());
+                    }
+                }
+
+                // Teleport player to spawn first
+                World spawnWorld = Bukkit.getWorld("world");
+                if (spawnWorld != null) player.teleport(spawnWorld.getSpawnLocation());
+
+                user.setIsland("");
+                plugin.getIslandManager().deleteIsland(isl);
+                player.sendMessage("§aYour island has been deleted.");
+                break;
+            }
+            case "setbiome": {
+                if (args.length < 2) { player.sendMessage("§cUsage: /is setbiome <biome>"); return true; }
+                if (user.getIsland().isEmpty()) { player.sendMessage("§cYou don't have an island!"); return true; }
+                Island isl = plugin.getIslandManager().getIslandByName(user.getIsland()).orElse(null);
+                if (isl == null) return true;
+                if (!isl.isAnOwner(player.getName())) { player.sendMessage("§cOnly island owners can change the biome."); return true; }
+                org.bukkit.block.Biome biome;
+                try {
+                    biome = org.bukkit.block.Biome.valueOf(args[1].toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    player.sendMessage("§cInvalid biome. Try: PLAINS, DESERT, FOREST, SNOWY_PLAINS, JUNGLE, SAVANNA");
+                    return true;
+                }
+                World islandWorld = Bukkit.getWorld(isl.getId());
+                if (islandWorld == null) { player.sendMessage("§cIsland world not loaded."); return true; }
+                // Set biome for all chunks in island radius
+                int radius = isl.getRadius();
+                Location center = islandWorld.getSpawnLocation();
+                for (int x = (int)center.getX() - radius; x <= (int)center.getX() + radius; x += 4) {
+                    for (int z = (int)center.getZ() - radius; z <= (int)center.getZ() + radius; z += 4) {
+                        for (int y = islandWorld.getMinHeight(); y < islandWorld.getMaxHeight(); y += 4) {
+                            islandWorld.setBiome(x, y, z, biome);
+                        }
+                    }
+                }
+                player.sendMessage("§aIsland biome set to §e" + biome.name().toLowerCase() + "§a!");
                 break;
             }
             default:

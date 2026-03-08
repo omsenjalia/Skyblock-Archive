@@ -33,6 +33,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/tiles/BaseTile.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Detonate.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Barter.java
+/app/SkyblockCore/src/main/java/dev/skyblock/tiles/OreGenTile.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Shielded.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/IceAspect.java
 /app/SkyblockCore/src/main/java/dev/skyblock/tiles/TileManager.java
@@ -78,6 +79,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/BaseMeleeEnchant.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/EnchantManager.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Implants.java
+/app/SkyblockCore/src/main/java/dev/skyblock/command/SpawnCommand.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/OverPower.java
 /app/SkyblockCore/src/main/java/dev/skyblock/db/UserRepository.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Vampire.java

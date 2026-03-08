@@ -2,6 +2,7 @@ package dev.skyblock.tiles;
 
 import dev.skyblock.SkyblockCore;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.io.File;
@@ -61,6 +62,7 @@ public class TileManager {
                     : tile instanceof AutoMinerTile  ? "AUTOMINER"
                     : tile instanceof CatalystTile   ? "CATALYST"
                     : tile instanceof HopperTile     ? "HOPPER"
+                    : tile instanceof OreGenTile     ? "OREGEN_" + ((OreGenTile) tile).getOreType().name()
                     : "UNKNOWN";
         dataConfig.set(key + ".type", type);
         if (tile instanceof AutoSellerTile ast) {
@@ -105,7 +107,13 @@ public class TileManager {
                     }
                     case "CATALYST" -> new CatalystTile(loc);
                     case "HOPPER"   -> new HopperTile(loc);
-                    default -> null;
+                    default -> {
+                        if (type.startsWith("OREGEN_")) {
+                            Material mat = Material.getMaterial(type.substring(7));
+                            if (mat != null) yield new OreGenTile(loc, mat);
+                        }
+                        yield null;
+                    }
                 };
                 if (tile != null) tiles.put(loc, tile);
             } catch (Exception e) {

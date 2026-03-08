@@ -65,6 +65,14 @@ public class IslandRepository {
         execute(sync, "INSERT OR REPLACE INTO info8pref (name, cobblestone, coal, copper, iron, lapis, gold, diamond, emerald, quartz, netherite, deep_coal, deep_copper, deep_iron, deep_lapis, deep_gold, deep_diamond, deep_emerald, deep_quartz, deep_netherite) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", prefParams);
     }
 
+    public void deleteIsland(String name) {
+        String[] tables = {"island", "bank", "expansion", "motd", "info", "info2", "info4",
+                           "info8", "info8pref", "lock", "level", "home"};
+        for (String table : tables) {
+            databaseManager.executeAsync("DELETE FROM " + table + " WHERE name = ?", name);
+        }
+    }
+
     private void execute(boolean sync, String sql, Object... params) {
         if (sync) databaseManager.executeSync(sql, params);
         else databaseManager.executeAsync(sql, params);

@@ -1,6 +1,7 @@
 package dev.skyblock.events;
 
 import dev.skyblock.SkyblockCore;
+import dev.skyblock.island.Island;
 import dev.skyblock.tiles.*;
 import dev.skyblock.user.User;
 import org.bukkit.Location;
@@ -10,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -20,6 +22,25 @@ public class MainEventListener implements Listener {
 
     public MainEventListener(SkyblockCore plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        if (!event.hasChangedBlock()) return;
+        Player player = event.getPlayer();
+        String worldName = player.getWorld().getName();
+        Island island = plugin.getIslandManager().getOnlineIslandByWorld(worldName).orElse(null);
+        if (island == null) return;
+
+        org.bukkit.World world = player.getWorld();
+        Location spawn = world.getSpawnLocation();
+        Location to = event.getTo();
+        double radius = island.getRadius();
+
+        if (Math.abs(to.getX() - spawn.getX()) > radius || Math.abs(to.getZ() - spawn.getZ()) > radius) {
+            event.setCancelled(true);
+            player.sendMessage("§cYou have reached the island border!");
+        }
     }
 
     @EventHandler
@@ -40,34 +61,54 @@ public class MainEventListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
-        User user = plugin.getUserManager().getOnlineUser(player.getUniqueId());
-        if (user != null) {
-            user.addBlocks(1);
+        Block block = event.getBlock();
+
+        // Island build permission
+        Island island = getIslandForBlock(block.getLocation());
+        if (island != null && !island.isAnOwner(player.getName()) && !island.getHelpers().contains(player.getName().toLowerCase())) {
+            event.setCancelled(true);
+            player.sendMessage("§cYou cannot break blocks on this island.");
+            return;
         }
 
+        User user = plugin.getUserManager().getOnlineUser(player.getUniqueId());
+        if (user != null) user.addBlocks(1);
+
         TileManager tm = plugin.getTileManager();
-        Location loc = event.getBlock().getLocation();
-        if (tm.hasTile(loc)) {
-            tm.removeTile(loc);
+        if (tm.hasTile(block.getLocation())) {
+            tm.removeTile(block.getLocation());
         }
     }
 
-    // These materials represent the custom tile blocks — players place specific blocks to activate tiles
-    private static final Material AUTOSELLER_BLOCK = Material.CYAN_GLAZED_TERRACOTTA;
-    private static final Material AUTOMINER_BLOCK  = Material.ORANGE_GLAZED_TERRACOTTA;
+    // Ore Gens — fixed ore per block
+    private static final java.util.Map<Material, Material> ORE_GEN_BLOCKS = java.util.Map.of(
+        Material.CYAN_GLAZED_TERRACOTTA,   Material.DIAMOND_ORE,
+        Material.GREEN_GLAZED_TERRACOTTA,  Material.EMERALD_ORE,
+        Material.WHITE_GLAZED_TERRACOTTA,  Material.IRON_ORE,
+        Material.YELLOW_GLAZED_TERRACOTTA, Material.GOLD_ORE,
+        Material.BLUE_GLAZED_TERRACOTTA,   Material.LAPIS_ORE
+    );
+
+    // Functional tiles
+    private static final Material AUTOSELLER_BLOCK = Material.BARREL;
+    private static final Material AUTOMINER_BLOCK  = Material.SLIME_BLOCK;
     private static final Material CATALYST_BLOCK   = Material.PURPLE_GLAZED_TERRACOTTA;
     private static final Material HOPPER_BLOCK     = Material.HOPPER;
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        // Implement island building permissions
-
         Player player = event.getPlayer();
         Block block = event.getBlockPlaced();
         TileManager tm = plugin.getTileManager();
 
-        // Check if player is placing a tile block
-        // Tile level is stored in the item's PDC
+        // Check island permission
+        Island island = getIslandForBlock(block.getLocation());
+        if (island != null && !island.isAnOwner(player.getName()) && !island.getHelpers().contains(player.getName().toLowerCase())) {
+            event.setCancelled(true);
+            player.sendMessage("§cYou cannot build on this island.");
+            return;
+        }
+
         ItemStack item = event.getItemInHand();
         int level = 1;
         if (item.hasItemMeta()) {
@@ -76,21 +117,30 @@ public class MainEventListener implements Listener {
             level = pdc.getOrDefault(key, org.bukkit.persistence.PersistentDataType.INTEGER, 1);
         }
 
+        // Ore gen blocks
+        if (ORE_GEN_BLOCKS.containsKey(block.getType())) {
+            Material oreType = ORE_GEN_BLOCKS.get(block.getType());
+            tm.addTile(block.getLocation(), new OreGenTile(block.getLocation(), oreType));
+            return;
+        }
+
+        // Functional tiles
         TileData data = new TileData(level);
         BaseTile tile = switch (block.getType()) {
-            case CYAN_GLAZED_TERRACOTTA   -> new AutoSellerTile(block.getLocation(), data);
-            case ORANGE_GLAZED_TERRACOTTA -> new AutoMinerTile(block.getLocation(), data);
+            case BARREL     -> new AutoSellerTile(block.getLocation(), data);
+            case SLIME_BLOCK -> new AutoMinerTile(block.getLocation(), data);
             case PURPLE_GLAZED_TERRACOTTA -> new CatalystTile(block.getLocation());
-            case HOPPER -> {
-                // Only register as custom HopperTile if item has tile_level PDC tag
-                if (level > 1) yield new HopperTile(block.getLocation());
-                yield null;
-            }
+            case HOPPER -> level > 1 ? new HopperTile(block.getLocation()) : null;
             default -> null;
         };
 
         if (tile != null) {
             tm.addTile(block.getLocation(), tile);
         }
+    }
+
+    private Island getIslandForBlock(Location loc) {
+        String worldName = loc.getWorld().getName();
+        return plugin.getIslandManager().getOnlineIslandByWorld(worldName).orElse(null);
     }
 }
