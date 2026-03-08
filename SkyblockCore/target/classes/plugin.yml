@@ -1,0 +1,34 @@
+name: SkyblockCore
+version: '1.0-SNAPSHOT'
+main: dev.skyblock.SkyblockCore
+api-version: '1.21'
+author: Infernus101
+commands:
+  is:
+    description: Main island command
+  gang:
+    description: Main gang command
+  shop:
+    description: Open the shop
+  sell:
+    description: Sell held items
+  sellall:
+    description: Sell all items in inventory
+  pay:
+    description: Send money to a player
+  bal:
+    description: Check balance
+  baltop:
+    description: Top balances
+  warp:
+    description: Warp to a location
+  setwarp:
+    description: Set a warp
+  enchant:
+    description: Enchant an item
+  ce:
+    description: Custom enchant commands
+  home:
+    description: Teleport home
+  sethome:
+    description: Set home
