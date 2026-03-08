@@ -17,7 +17,7 @@ This project is a manual conversion of over 500 PHP files to a modern Java envir
 | **Custom Enchants** | ✅ Complete | Lore & PDC metadata system. Support for armor, swords, bows, and tools. |
 | **Scoreboard** | ✅ Complete | Dual-mode display (Spawn vs Island), LuckPerms integration, real-time updates. |
 | **Shop/Economy** | ✅ Complete | Full Chest GUI navigation, buying system, price mapping. |
-| **Gangs** | 🟡 Partial | Repository and basic commands implemented. |
+| **Gangs** | ✅ Complete | Create, disband, invite, accept, kick, leave, chat, and info commands. |
 | **Pets** | 🟡 Partial | Manager and basic pet persistence implemented. |
 | **Warps & Homes** | ✅ Complete | Persistence in database, multiple homes support. |
 
@@ -35,13 +35,14 @@ This project is a manual conversion of over 500 PHP files to a modern Java envir
 | `/is sethome` | Set island home location | |
 | `/is delete` | Delete your island and world | |
 | `/is setbiome <biome>` | Change island biome | |
+| `/is top` | View top 10 islands by points | |
 | `/spawn` | `/spawn` | Teleport to spawn world |
 | `/bal` | `/bal [player]` | Check balance |
 | `/baltop` | `/baltop` | Top balances |
 | `/pay` | `/pay <player> <amount>` | Send money |
 | `/sell` | `/sell [hand/all]` | Sell items |
 | `/shop` | `/shop` | Open the Chest GUI shop |
-| `/gang` | `/gang <subcommand>` | Gang management |
+| `/gang` | `/gang <subcommand>` | Create, disband, invite, accept, kick, leave, chat, and info |
 | `/tilegive` | `/tilegive <type> [lvl] [ore]` | Give custom tile items (Admin only) |
 
 ### Tile & Ore Gen (PDC-Tagged Items)

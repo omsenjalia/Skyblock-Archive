@@ -11,6 +11,9 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -25,6 +28,38 @@ public class MainEventListener implements Listener {
 
     public MainEventListener(SkyblockCore plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void onWorldChange(PlayerChangedWorldEvent event) {
+        // Scoreboard needs to switch between spawn-mode and island-mode
+        plugin.getScoreboardManager().updateScoreboard(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onItemHeld(PlayerItemHeldEvent event) {
+        // Update "Item in hand" line on island scoreboard
+        plugin.getScoreboardManager().updateScoreboard(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        Player victim = event.getEntity();
+        User victimUser = plugin.getUserManager().getOnlineUser(victim.getUniqueId());
+        if (victimUser != null) {
+            victimUser.addDeaths(1);
+            victimUser.setKillstreak(0);
+        }
+
+        Player killer = victim.getKiller();
+        if (killer != null) {
+            User killerUser = plugin.getUserManager().getOnlineUser(killer.getUniqueId());
+            if (killerUser != null) {
+                killerUser.addKills(1);
+                killerUser.setKillstreak(killerUser.getKillstreak() + 1);
+                killer.sendMessage("§a+1 Kill! Streak: §e" + killerUser.getKillstreak());
+            }
+        }
     }
 
     @EventHandler

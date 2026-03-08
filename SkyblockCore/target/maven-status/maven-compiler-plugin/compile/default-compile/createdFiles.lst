@@ -3,6 +3,7 @@ dev/skyblock/enchants/armor/DoubleJump.class
 dev/skyblock/db/UserRepository.class
 dev/skyblock/enchants/sword/OverPower.class
 dev/skyblock/enchants/sword/DeathBringer.class
+dev/skyblock/util/Format.class
 dev/skyblock/enchants/sword/DisarmProtection.class
 dev/skyblock/enchants/sword/Detonate.class
 dev/skyblock/enchants/bow/Launcher.class

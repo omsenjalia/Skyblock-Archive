@@ -1,6 +1,7 @@
 package dev.skyblock.command;
 import dev.skyblock.SkyblockCore;
 import dev.skyblock.user.User;
+import dev.skyblock.util.Format;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -37,12 +38,13 @@ public class PayCommand implements CommandExecutor {
             player.sendMessage("§cYou don't have enough money!");
             return true;
         }
-        user.addMoney(-amount);
+        user.removeMoney(amount);
         targetUser.addMoney(amount);
-        player.sendMessage("§aYou paid §e$" + amount + " §ato §e" + target.getName());
-        target.sendMessage("§aYou received §e$" + amount + " §afrom §e" + player.getName());
+        player.sendMessage("§aYou paid §e$" + Format.formatMoney(amount) + " §ato §e" + target.getName());
+        target.sendMessage("§aYou received §e$" + Format.formatMoney(amount) + " §afrom §e" + player.getName());
 
-        plugin.getScoreboardManager().refreshAll();
+        plugin.getScoreboardManager().updateScoreboard(player);
+        plugin.getScoreboardManager().updateScoreboard(target);
         return true;
     }
 }
