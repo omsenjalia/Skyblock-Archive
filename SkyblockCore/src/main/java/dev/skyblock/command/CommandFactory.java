@@ -24,5 +24,6 @@ public class CommandFactory {
         plugin.getCommand("enchant").setExecutor(new EnchantCommand(plugin));
         plugin.getCommand("ce").setExecutor(new CustomEnchantCommand(plugin));
         plugin.getCommand("spawn").setExecutor(new SpawnCommand());
+        plugin.getCommand("tilegive").setExecutor(new TileGiveCommand());
     }
 }

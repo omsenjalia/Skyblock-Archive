@@ -24,25 +24,84 @@ public class ScoreboardManager {
         Objective obj = board.registerNewObjective("skyblock", Criteria.DUMMY, "§3§lF§bT §eSkyBlock");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        int islandLevel = 0;
-        if (!user.getIsland().isEmpty()) {
-            Optional<Island> islandOpt = plugin.getIslandManager().getIslandByName(user.getIsland());
-            islandLevel = islandOpt.map(Island::getLevel).orElse(0);
+        String worldName = player.getWorld().getName();
+        Optional<Island> islandOpt = plugin.getIslandManager().getOnlineIslandByWorld(worldName);
+
+        int line = 14;
+
+        // Header
+        obj.getScore("§7▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬").setScore(line--);
+
+        // Always shown
+        obj.getScore("§3 ✪ §aIGN: §f" + player.getName()).setScore(line--);
+        obj.getScore("§3 ✪ §ePlayers: §f" + Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getMaxPlayers()).setScore(line--);
+        obj.getScore("§3 ✪ §6Money: §f" + shortenNumber(user.getMoney()) + "$").setScore(line--);
+        obj.getScore("§3 ✪ §dMana: §f" + shortenNumber(user.getMana())).setScore(line--);
+        obj.getScore("§3 ✪ §eMobCoin: §f" + shortenNumber(user.getMobcoin())).setScore(line--);
+        obj.getScore("§3 ✪ §cXP: §f" + shortenNumber(user.getXp())).setScore(line--);
+
+        if (islandOpt.isEmpty()) {
+            // Spawn/hub mode
+            obj.getScore("§d † Your Stats †").setScore(line--);
+
+            // Rank via LuckPerms if available, fallback to Default
+            String rank = "Default";
+            try {
+                if (Bukkit.getPluginManager().getPlugin("LuckPerms") != null) {
+                    net.luckperms.api.LuckPerms lp = net.luckperms.api.LuckPermsProvider.get();
+                    net.luckperms.api.model.user.User lpUser = lp.getUserManager().getUser(player.getUniqueId());
+                    if (lpUser != null) {
+                        rank = lpUser.getPrimaryGroup();
+                        rank = rank.substring(0, 1).toUpperCase() + rank.substring(1);
+                    }
+                }
+            } catch (Exception ignored) {}
+
+            obj.getScore("§3 》 §aRank: §f" + rank).setScore(line--);
+
+            String islandName = user.getIsland().isEmpty() ? "---" : user.getIsland();
+            obj.getScore("§3 》 §2Island: §f" + islandName).setScore(line--);
+
+            String gangName = user.getGang() == null || user.getGang().isEmpty() ? "---" : user.getGang();
+            obj.getScore("§3 》 §eGang: §f" + gangName).setScore(line--);
+
+            obj.getScore("§3 》 §9K-D: §f" + user.getKills() + "-" + user.getDeaths()).setScore(line--);
+            obj.getScore("§3 》 §eStreak: §f" + user.getKillstreak()).setScore(line--);
+            obj.getScore("§b ➺ §6Do /is help").setScore(line--);
+        } else {
+            // Island mode
+            Island island = islandOpt.get();
+            obj.getScore("§d † Island Stats †").setScore(line--);
+            obj.getScore("§3 》 §bIsland: §f" + island.getName()).setScore(line--);
+            obj.getScore("§3 》 §6Owner: §f" + island.getReceiver()).setScore(line--);
+            obj.getScore("§3 》 §5Bank: §f" + shortenNumber(island.getMoney()) + "$").setScore(line--);
+            obj.getScore("§3 》 §eLevel: §f" + island.getLevel()).setScore(line--);
+            obj.getScore("§3 》 §2Points: §f" + island.getPoints()).setScore(line--);
+            String handItem = player.getInventory().getItemInMainHand().getType().name().toLowerCase().replace("_", " ");
+            obj.getScore("§3 》 §aItem: §f" + handItem).setScore(line--);
+            obj.getScore("§b ➺ §6Do /is help").setScore(line--);
         }
 
-        obj.getScore("§7----------------").setScore(6);
-        obj.getScore("§fSeason: §e1").setScore(5);
-        obj.getScore("§fIsland Level: §e" + islandLevel).setScore(4);
-        obj.getScore("§fBalance: §a$" + (int)user.getMoney()).setScore(3);
-        obj.getScore("§fKills: §c" + user.getKills()).setScore(2);
-        obj.getScore("§7---------------- ").setScore(1);
+        // Footer
+        obj.getScore("§7▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ").setScore(line--);
 
         player.setScoreboard(board);
     }
 
     public void refreshAll() {
-        for (org.bukkit.entity.Player player : org.bukkit.Bukkit.getOnlinePlayers()) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
             updateScoreboard(player);
         }
+    }
+
+    private String shortenNumber(double number) {
+        if (number >= 1_000_000_000) return String.format("%.1fB", number / 1_000_000_000);
+        if (number >= 1_000_000)     return String.format("%.1fM", number / 1_000_000);
+        if (number >= 1_000)         return String.format("%.1fK", number / 1_000);
+        return String.valueOf((long) number);
+    }
+
+    private String shortenNumber(int number) {
+        return shortenNumber((double) number);
     }
 }

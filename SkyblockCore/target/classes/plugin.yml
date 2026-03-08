@@ -35,3 +35,6 @@ commands:
   spawn:
     description: Teleport to spawn
     usage: /spawn
+  tilegive:
+    description: Give tile items (admin)
+    usage: /tilegive <type> [level] [ore]

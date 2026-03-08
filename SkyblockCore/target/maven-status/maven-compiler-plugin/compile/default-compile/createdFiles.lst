@@ -15,13 +15,13 @@ dev/skyblock/enchants/sword/Aerial.class
 dev/skyblock/enchants/bow/Paralyze.class
 dev/skyblock/enchants/sword/Lifesteal.class
 dev/skyblock/enchants/sword/DisorderProtection.class
+dev/skyblock/tiles/TileItemFactory.class
 dev/skyblock/command/PayCommand.class
 dev/skyblock/enchants/armor/Enlighten.class
 dev/skyblock/pets/PetManager.class
 dev/skyblock/command/BalCommand.class
 dev/skyblock/enchants/BaseTouchEnchant.class
 dev/skyblock/scoreboard/ScoreboardManager.class
-dev/skyblock/events/MainEventListener$1.class
 dev/skyblock/enchants/armor/Glowing.class
 dev/skyblock/gang/Gang.class
 dev/skyblock/tiles/TileManager$1.class
@@ -32,6 +32,7 @@ dev/skyblock/enchants/armor/Virtuous.class
 dev/skyblock/enchants/BaseEnchant.class
 dev/skyblock/command/CustomEnchantCommand.class
 dev/skyblock/enchants/sword/MobSlayer.class
+dev/skyblock/command/TileGiveCommand.class
 dev/skyblock/enchants/block/Blessing.class
 dev/skyblock/enchants/armor/Antidote.class
 dev/skyblock/enchants/armor/Cursed.class
