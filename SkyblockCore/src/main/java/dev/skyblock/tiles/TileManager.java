@@ -20,7 +20,6 @@ public class TileManager {
     public TileManager(SkyblockCore plugin) {
         this.plugin = plugin;
         this.dataFile = new File(plugin.getDataFolder(), "tiles.yml");
-        // Ensure plugin data folder exists before trying to load/save
         if (!dataFile.getParentFile().exists()) {
             dataFile.getParentFile().mkdirs();
         }
@@ -39,6 +38,7 @@ public class TileManager {
     }
 
     public void addTile(Location loc, BaseTile tile) {
+        plugin.getLogger().info("[TileManager] addTile called: " + tile.getClass().getSimpleName() + " at " + locKey(loc));
         tiles.put(loc, tile);
         saveTile(loc, tile);
     }
@@ -62,6 +62,7 @@ public class TileManager {
 
     private void saveTile(Location loc, BaseTile tile) {
         String key = locKey(loc);
+        plugin.getLogger().info("[TileManager] saveTile called for key: " + key + " file: " + dataFile.getAbsolutePath());
         String type = tile instanceof AutoSellerTile ? "AUTOSELLER"
                     : tile instanceof AutoMinerTile  ? "AUTOMINER"
                     : tile instanceof CatalystTile   ? "CATALYST"
@@ -77,7 +78,13 @@ public class TileManager {
             dataConfig.set(key + ".fortune", amt.getData().getFortuneEnabled());
             dataConfig.set(key + ".fortuneLevel", amt.getData().getFortuneLevel());
         }
-        try { dataConfig.save(dataFile); } catch (IOException e) { e.printStackTrace(); }
+        try {
+            dataConfig.save(dataFile);
+            plugin.getLogger().info("[TileManager] Save successful.");
+        } catch (IOException e) {
+            plugin.getLogger().severe("[TileManager] Save FAILED: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void removeTileFromConfig(Location loc) {
