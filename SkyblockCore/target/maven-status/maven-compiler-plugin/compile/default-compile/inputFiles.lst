@@ -11,6 +11,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Wither.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/BaseArmorEnchant.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/bow/Piercing.java
+/app/SkyblockCore/src/main/java/dev/skyblock/tiles/TileData.java
 /app/SkyblockCore/src/main/java/dev/skyblock/db/DatabaseManager.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Witch.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Inspirit.java
@@ -61,10 +62,12 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/command/WarpCommand.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Firma.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/LuckOfTheSky.java
+/app/SkyblockCore/src/main/java/dev/skyblock/tiles/CatalystTile.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/bow/Paralyze.java
 /app/SkyblockCore/src/main/java/dev/skyblock/db/IslandRepository.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Explosion.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Protector.java
+/app/SkyblockCore/src/main/java/dev/skyblock/tiles/AutoMinerTile.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/bow/Healing.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Antidote.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Dispatch.java
@@ -79,9 +82,11 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Vampire.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/touch/Scythe.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/block/Blessing.java
+/app/SkyblockCore/src/main/java/dev/skyblock/tiles/AutoSellerTile.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Wizardly.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Disorder.java
 /app/SkyblockCore/src/main/java/dev/skyblock/events/MainEventListener.java
+/app/SkyblockCore/src/main/java/dev/skyblock/tiles/HopperTile.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Tank.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/BaseEnchant.java
 /app/SkyblockCore/src/main/java/dev/skyblock/command/ShopCommand.java
@@ -111,6 +116,7 @@
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/CripplingStrike.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/MobSlayer.java
 /app/SkyblockCore/src/main/java/dev/skyblock/command/CustomEnchantCommand.java
+/app/SkyblockCore/src/main/java/dev/skyblock/util/SellPrices.java
 /app/SkyblockCore/src/main/java/dev/skyblock/command/HomeCommand.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/sword/Serpent.java
 /app/SkyblockCore/src/main/java/dev/skyblock/enchants/armor/Poisoned.java
